@@ -14,9 +14,7 @@ function Inicio() {
         2xl:bg-cover 2xl:-
         bg-no-repeat
         h-screen
-        sm:h-[95vh]        
-        `
-        
+        sm:h-[95vh]`
         } style={{backgroundImage:`url(${assets.Mecanica1})`}}>
 
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-red-600 sm:mt-8 md:mt-16"></h1>
