@@ -7,6 +7,7 @@ import Nosotros from '../components/Nosotros'
 import Servicios from '../components/Servicios'
 import Contacto from '../components/Contacto'
 import Whatsapp from '../components/Whatsapp'
+import Productos from '../components/Productos'
 
 const Home = () => {
   return (
@@ -17,7 +18,9 @@ const Home = () => {
         <Inicio />
         <Nosotros />
         <Servicios />
+        <Productos />
         <Contacto />
+        
       </main>
 
       <Whatsapp/>

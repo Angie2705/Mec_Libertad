@@ -16,7 +16,6 @@ function App() {
         <Route path='/read' element={<Read/>}></Route>
         <Route path='/update' element={<Update/>}></Route>
         <Route path='/updatewrite/:fireBaseId' element={<UpdateWrite/>} ></Route>
-
       </Routes>
     </>
     
