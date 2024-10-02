@@ -6,9 +6,9 @@ function Nosotros() {
 
 
     <section id="nosotros">
-      <h2 className="w-full text-center text-4xl font-bold text-gray-800 p-6 ">Sobre Nosotros</h2>
+      <h2 className="w-full text-center text-3xl font-bold text-gray-800 p-2 md:p-6">Sobre Nosotros</h2>
       <div className='grid grid-cols-1 lg:grid-cols-3 gap-x-4 lg:gap-y-0 gap-y-8 p-2'>
-        <div className="flex flex-col items-center justify-center rounded-lg py-5 bg-red-800 mx-10 lg:ml-12 lg:mr-0 col-span-2">
+        <div className="flex flex-col items-center justify-center rounded-lg py-5 bg-red-800 mx-6 lg:ml-12 lg:mr-0 col-span-2">
 
           <p className="text-md text-white px-6 word-space rounded-lg text-justify" style={{ wordSpacing: '8px' }}>
             Mecánica Libertad nace el año 2013 en la cuidad de Santiago de Chile, luego de que sus fundadores, Wilson Ocas Velásquez padre y Wilson Ocas Valverde, de profesión mecánico en máquinas y herramientas, tomaran la decisión de emprender, dedicando todo su tiempo y conocimientos técnicos adquiridos durante sus 11 años de vida laboral desarrollada tanto en Perú como en Chile en el área de la Metalmecánica.<br />
@@ -24,7 +24,7 @@ function Nosotros() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-5 lg:gap-6 h-auto p-6 lg:p-7 bg-gray-200 rounded-lg pb-5 ml-8 mr-4 lg:ml-0 lg:mr-6">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-5 lg:gap-6 h-auto  bg-gray-200 rounded-lg p-6 pb-5 ml-6 mr-2 lg:ml-0 lg:mr-6">
           {/* <img className="w-full h-full object-cover rounded-lg hover:scale-95 transition duration-1000 cursor-pointer" src={assets.Mecanica2} alt="" />
           <img className="w-full h-full object-cover rounded-lg hover:scale-95 transition duration-1000 cursor-pointer" src={assets.Mecanica3} alt="" /> */}
           <img className="w-full h-full object-cover rounded-lg hover:scale-95 transition duration-1000 cursor-pointer" src={assets.Mecanica4} alt="" />
