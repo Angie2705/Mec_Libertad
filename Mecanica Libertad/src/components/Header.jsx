@@ -41,34 +41,33 @@ const Header = () => {
   let [open, setOpen] = useState(false);
 
   return (
-    <nav className={`bg-white w-full top-0 shadow-md md:py-4 rounded-md transition-transform duration-700 ${showNavBar ? 'translate-y-0' : '-translate-y-full'} `}>
-      <div className="md:flex items-center w-full">
+      <nav className={`bg-white w-full top-0 shadow-md md:py-4 rounded-md transition-transform duration-700 ${showNavBar ? 'translate-y-0' : '-translate-y-full'} `}>
+        <div className="md:flex items-center w-full">
 
-        <div className="md:absolute pl-5 bg-white">
-          <img className=" " src={assets.logo} alt="" />
+          <div className="md:absolute pl-5 bg-white">
+            <img className=" " src={assets.logo} alt="" />
+          </div>
+
+          <div onClick={() => setOpen(!open)} className="fixed end-5 top-5">
+            <button data-collapse-toggle="navbar-sticky" type="button" class=" items-center justify-center inline-flex md:hidden p-2 w-10 h-10 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 
+                    dark:text-black dark:hover:bg-gray-500 dark:focus:ring-gray-500" aria-controls="navbar-sticky" aria-expanded="false">
+              <svg class="w-5 h-5" aria-hidden="true" fill="none" viewBox="0 0 17 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+              </svg>
+            </button>
+          </div>
+
+          <ul className={`md:flex w-full absolute md:static justify-center text-center md:gap-x-8 md:z-auto z-[-1]
+            bg-white text-gray-900 font-semibold text-sm md:text-base px-20 py-3 md:p-0 transition-all duration-500 ease-in
+              ${open ? 'top-20 opacity-100' : 'top-[-140px]'} md:opacity-100 opacity-0`}>
+            {
+              Links.map((Link) => (
+                <li key={Link.name} className="hover:bg-gray-200 md:hover:bg-gray-200 px-6 md:px-4 py-2 rounded-md duration-150"> <a href={Link.link}>{Link.name}</a> </li>
+              ))
+            }
+          </ul>
         </div>
-
-        <div onClick={() => setOpen(!open)} className="fixed end-5 top-5">
-          <button data-collapse-toggle="navbar-sticky" type="button" class=" items-center justify-center inline-flex md:hidden p-2 w-10 h-10 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 
-                  dark:text-black dark:hover:bg-gray-500 dark:focus:ring-gray-500" aria-controls="navbar-sticky" aria-expanded="false">
-            <svg class="w-5 h-5" aria-hidden="true" fill="none" viewBox="0 0 17 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-            </svg>
-          </button>
-        </div>
-
-        <ul className={`md:flex w-full absolute md:static justify-center text-center md:gap-x-8 md:z-auto z-[-1]
-           bg-white text-gray-900 font-semibold text-sm md:text-base px-20 py-3 md:p-0 transition-all duration-500 ease-in
-            ${open ? 'top-20 opacity-100' : 'top-[-140px]'} md:opacity-100 opacity-0`}>
-          {
-            Links.map((Link) => (
-              <li key={Link.name} className="hover:bg-gray-200 md:hover:bg-gray-200 px-6 md:px-4 py-2 rounded-md duration-150"> <a href={Link.link}>{Link.name}</a> </li>
-            ))
-          }
-        </ul>
-      </div>
-
-    </nav>
+      </nav>
   );
 }
 

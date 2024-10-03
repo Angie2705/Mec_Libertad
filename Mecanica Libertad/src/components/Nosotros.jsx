@@ -3,9 +3,7 @@ import { assets } from '../assets/assets';
 import Title from './Title';
 function Nosotros() {
   return (
-
-
-    <section id="nosotros">
+    <div id="nosotros">
       <h2 className="w-full text-center text-3xl font-bold text-gray-800 p-2 md:p-6">Sobre Nosotros</h2>
       <div className='grid grid-cols-1 lg:grid-cols-3 gap-x-4 lg:gap-y-0 gap-y-8 p-2'>
         <div className="flex flex-col items-center justify-center rounded-lg py-5 bg-red-800 mx-6 lg:ml-12 lg:mr-0 col-span-2">
@@ -32,7 +30,7 @@ function Nosotros() {
         </div>
       </div>
 
-    </section>
+    </div>
   );
 
 
