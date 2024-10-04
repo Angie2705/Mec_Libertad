@@ -42,7 +42,7 @@ function Sidebar() {
   };
 
   return (
-    <div className="fixed top-1/2 left-8 transform -translate-y-1/2 flex flex-col space-y-4 z-40  ">
+    <div className="hidden md:flex fixed top-1/2 left-4 transform -translate-y-1/2 flex-col space-y-4 z-40  ">
       {sections.map((section) => (
         <a
           key={section}
