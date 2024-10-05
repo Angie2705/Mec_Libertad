@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { database, storage } from '../firebase';
-import { ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getDownloadURL, ref as storageRef, uploadBytes } from 'firebase/storage';
 import { getDatabase, ref, set, push } from 'firebase/database';
 
 const Write = () => {
@@ -10,7 +10,12 @@ const Write = () => {
   let [imageFile, setImageFile] = useState(null);
 
   const handleImageChange = (e)=>{
-    setImageFile(e.target.files[0])
+
+   const file = e.target.files[0];
+    if (file) {
+      setImageFile(file); // Guardamos el archivo de imagen
+    }
+    
   }
 
   const handleSubmit = async (e) =>{
@@ -23,14 +28,20 @@ const Write = () => {
       let imageUrl = "";
 
       if(imageFile){
-        const imageRef = storageRef(storage, `productos/${imageFile.name}`)
+        const imgStorageRef = storageRef(storage, `productos/${imageFile.name}`)
 
-        await uploadBytes(imageRef, imageFile);
+        //Subida de imagen al storage
+        const snapshot = await uploadBytes(imgStorageRef, imageFile);
+        console.log('Imagen subida correctamente', snapshot)
 
-        imageUrl = await getDownloadURL(imageRef);
+        imageUrl = await getDownloadURL(imgStorageRef);
       }
 
-      //referencia a la ubicación de la bd donde se guardará
+      if (!imageUrl) {
+        throw new Error("No se pudo obtener la URL de la imagen.");
+      }
+
+            //referencia a la ubicación de la bd donde se guardará
       const productsRef = ref(database, 'productos');
 
       //Se usa await para esperar a que push finalice antes de continuar
@@ -49,7 +60,7 @@ const Write = () => {
       alert("Producto agregado");
 
     } catch (error) {
-      console.error("Error al agregar producto: ",error)
+      console.error("Error al agregar producto: ",error);
     }
     
   }

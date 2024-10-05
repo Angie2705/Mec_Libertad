@@ -3,7 +3,7 @@ import { assets } from '../assets/assets';
 
 const Whatsapp = () => {
 
-    const phoneNumber = "56935058867";
+    const phoneNumber = "56974655804";
     const message = "Hola que tal uwu";
 
   return (

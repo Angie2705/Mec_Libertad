@@ -29,7 +29,6 @@ function Nosotros() {
           <img className="w-full h-full object-cover rounded-lg hover:scale-95 transition duration-1000 cursor-pointer" src={assets.Mecanica5} alt="" />
         </div>
       </div>
-
     </div>
   );
 

@@ -4,17 +4,25 @@ import {Link} from 'react-router-dom'
 const ProductItem = ({id, image, name, price, desc}) => {
   return (
     <Link to={`/product/${id}`}>
-        <div className='flex flex-col items-center hover:scale-105 hover:outline hover:outline-4 hover:outline-red-500 transition duration-1000 cursor-pointer'>
-                    <div>
-                        <img className="w-80 h-80 object-fill rounded-sm " src={image} alt="" />
-                    </div>
-                    <div className='bg-gray-200 w-80 lg:w-full'>
-                    <p className=''>{name}</p>
-                    <p>Precio aproximado: {price}</p></div>
-                    <p>{desc}</p>
-                    
+        
+          <div key={id} className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+            <div className='w-full h-80'>
+            <img 
+              src={image} 
+              alt={name} 
+              className="w-full h-full object-fit"
+            />
+            </div>
+            
+            <div className="p-4">
+              <h3 className="text-xl text-gray-900">{name}</h3>
+              <p className="text-lg text-gray-600 mt-1">{desc}</p>
+              <div className="mt-4 flex justify-between items-center">
+                <span className="text-md font-bold text-red-700">Precio Aproximado: ${price}</span>
+              </div>
+            </div>
+          </div>
 
-        </div>
     </Link>
     
   )

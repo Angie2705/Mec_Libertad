@@ -14,15 +14,15 @@ const Home = () => {
     <> 
       <Header />
       <Sidebar/>
-      <main className=''>
+      <div className='md:pt-16'>
+      <main className='min-h-screen'>
         <Inicio />
         <Nosotros />
         <Servicios />
-        <Productos />
         <Contacto />
         
       </main>
-
+      </div>
       <Whatsapp/>
     </>
   )

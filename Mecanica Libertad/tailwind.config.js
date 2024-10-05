@@ -6,7 +6,11 @@ export default {
   ],
   
   theme: {
-    extend: {},
+    extend: {
+      blur: {
+        xs: '1px',
+      }
+    },
   },
   plugins: [],
   

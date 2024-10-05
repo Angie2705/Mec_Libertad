@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 function Sidebar() {
   const [activeSection, setActiveSection] = useState('');
 
-  const sections = ['inicio', 'nosotros', 'servicios','productos', 'contacto', ];
+  const sections = ['inicio', 'nosotros', 'servicios', 'contacto', ];
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY + window.innerHeight / 2;
