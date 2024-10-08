@@ -9,7 +9,7 @@ const ImagenServicios = ({ img }) => {
   
   return (
     <>
-      <figure className="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0 hover:scale-105 transition hover:outline hover:outline-4 rounded-lg hover:outline-white duration-300 hover:z-10 group">
+      <figure className="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0 hover:scale-105  hover:outline hover:outline-4 rounded-lg hover:outline-white hover:z-10 group">
         <a>
           <img
             className="w-full h-full filter blur-xs transition duration-500 ease-in-out group-hover:filter-none rounded-lg"

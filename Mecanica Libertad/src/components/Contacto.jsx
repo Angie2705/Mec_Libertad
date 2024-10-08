@@ -2,59 +2,52 @@ import React from 'react';
 
 function Contacto() {
   return (
-
-    <section id="contacto" className="h-[85vh] text-center bg-gray-100 mt-3">
-
+    <section id="contacto" className="h-full text-center bg-gray-100 mt-3">
       <h2 className="w-full text-center text-4xl font-bold text-gray-800 p-6">Contáctanos</h2>
-      <div className='grid grid-cols-1 lg:grid-cols-3 gap-x-4 lg:gap-y-0 gap-y-8 p-2'>
-        <div className="flex flex-col text-left items-center justify-center rounded-lg md:py-10 bg-white ml-16 col-span-2 w-2/3" >
 
-          <h2 className="text-black text-center">Email</h2>
+      <div className='grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-x-4 lg:gap-y-0 gap-y-8 p-2'>
 
-          <p className="text-md text-black md:px-6 lg:px-12 lg:py-6 word-space rounded-lg text-justify" style={{ wordSpacing: '8px' }}>
-            Puedes contactarnos a través del siguiente formulario, o visitarnos en nuestra tienda física.
+        <div className="flex flex-col rounded-lg items-center py-3 md:py-6 px-5 bg-white w-10/12 lg:w-11/12">
+
+          <h2 className="text-black text-center text-2xl font-semibold">Email</h2>
+
+          <p className="text-md text-black mx-4 md:mx-0 md:px-6 lg:px-8 py-4 word-space rounded-lg text-justify" style={{ wordSpacing: '8px' }}>
+            Contactanos por Email a través del siguiente formulario.
           </p>
 
-          <form className=" space-y-4">
+          <form className="space-y-4 w-full">
             <div className="flex flex-col items-center">
-              <label className="block text-sm font-bold mb-2"></label>
-              <input
-                type="text"
-                placeholder="Nombre"
-                className=" p-2 border border-gray-300 rounded"
-              />
-            </div>
-            <div className="flex flex-col items-center">
-              <label className="block text-sm font-bold mb-2"></label>
-              <input
-                type="email"
-                placeholder="Correo Electrónico"
-                className="w-full p-2 border border-gray-300 rounded"
-              />
-            </div>
 
-            <div className="flex flex-col items-center">
-              <label className="block text-sm font-bold mb-2"></label>
+              <input
+                type="text" placeholder="Nombre"
+                className="w-10/12 md:w-4/5 p-2 border mb-4 md:mb-7 border-gray-400 rounded-xl" />
+
+              <input
+                type="email" placeholder="Correo Electrónico"
+                className="w-10/12 md:w-4/5 p-2 border mb-4 md:mb-7 border-gray-400 rounded-xl" />
+
               <textarea
                 placeholder="Mensaje"
-                className="w-full p-2 border border-gray-300 rounded"
-              />
+                className="w-10/12 md:w-4/5 h-40 p-2 border mb-4 md:mb-7 border-gray-400 rounded-xl" />
+
+              <button
+                type="submit"
+                className="w-28 p-2 bg-red-600 text-white rounded-full hover:bg-red-700">
+                Enviar
+              </button>
+
             </div>
-            <button
-              type="submit"
-              className="w-full p-2 bg-red-600 text-white rounded hover:bg-red-700"
-            >
-              Enviar
-            </button>
           </form>
+
         </div>
+
+        <div className='bg-black text-white w-full'>2</div>
       </div>
     </section>
   );
 }
 
 export default Contacto;
-
 
 /*<section id="contacto" className="h-[85vh] flex items-center justify-center bg-gray-100 text-center">
       <div className="max-w-xl">

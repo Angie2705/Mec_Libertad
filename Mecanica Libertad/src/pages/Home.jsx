@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import Header from '../components/Header'
-import Sidebar from '../components/SideBar'
+import Sidebar from '../components/Sidebar'
 import Inicio from '../components/Inicio'
 import Nosotros from '../components/Nosotros'
 import Servicios from '../components/Servicios'
@@ -12,7 +12,7 @@ import Productos from '../components/Productos'
 const Home = () => {
   return (
     <> 
-      <Header />
+      <Header/>
       <Sidebar/>
       <div className='md:pt-16'>
       <main className='min-h-screen'>
