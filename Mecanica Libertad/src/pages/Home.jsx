@@ -12,7 +12,7 @@ import Productos from '../components/Productos'
 const Home = () => {
   return (
     <> 
-      <Header />
+      <Header/>
       <Sidebar/>
       <div className='md:pt-16'>
         <main className='min-h-screen'>

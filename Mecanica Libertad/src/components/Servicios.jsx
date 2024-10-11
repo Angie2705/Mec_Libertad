@@ -2,55 +2,55 @@ import React, { useState } from 'react';
 import Title from './Title';
 import { assets } from '../assets/assets';
 import ImagenServicios from './imagenServicios';
+
 function Servicios() {
 
-  
-
-
   return (
-    <section id="servicios" className="h-cover items-center justify-center text-center pb-5">
-      <div className="">
-          <div className="relative text-center w-1/2 mx-auto py-2 bg-gradient-to-r from-red-500 to-gray-800 rounded-lg shadow-lg">
-            <h1 className="text-white text-5xl font-bold tracking-wide drop-shadow-md">
-              Nuestros servicios
-            </h1>
-            <div className="absolute inset-0 bg-opacity-50 bg-black rounded-lg hover:bg-opacity-0 transition duration-500"></div>
-          </div>
-          
+    <section id="servicios" className="h-cover items-center justify-center text-center pb-5 mt-10">
+      <div>
 
-          
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 pt-2'>
-
-          <div className='grid grid-rows-2 gap-1  '>
-              
-            <ImagenServicios img={assets.Mecanica2} />
-            <ImagenServicios img={assets.Mecanica2} />
-
-              
-            
-          </div>
-
-          <div className='grid grid-rows-3 gap-1 '>
-            
-          <ImagenServicios img={assets.Mecanica2} />
-
-          <ImagenServicios img={assets.Mecanica3} />
-
-          <ImagenServicios img={assets.Mecanica4} />
-            
-          </div>
-
-          <div className='grid grid-rows-3 gap-1 '>
-            
-          <ImagenServicios img={assets.Mecanica2} />
-
-          <ImagenServicios img={assets.Mecanica3} />
-
-          <ImagenServicios img={assets.Mecanica4} />
-            
-          </div>
-
+        <div className="relative text-center w-1/2 mx-auto py-2 bg-gradient-to-r from-red-500 to-gray-800 rounded-lg shadow-lg">
+          <h1 className="text-white text-5xl font-bold tracking-wide drop-shadow-md">
+            Nuestros servicios
+          </h1>
+          <div className="absolute inset-0 bg-opacity-50 bg-black rounded-lg hover:bg-opacity-0 transition duration-500"></div>
         </div>
+
+        <div className='hidden lg:grid grid-cols-3 gap-1 pt-2'>
+          <div className='grid grid-rows-2 gap-1'>
+            <ImagenServicios img={assets.Mecanica2}/>
+            <ImagenServicios img={assets.Mecanica2}/>
+          </div>
+
+          <div className='grid grid-rows-3 gap-1'>
+            <ImagenServicios img={assets.Mecanica2}/>
+            <ImagenServicios img={assets.Mecanica3}/>
+            <ImagenServicios img={assets.Mecanica4}/>
+          </div>
+
+          <div className='grid grid-rows-3 gap-1'>
+            <ImagenServicios img={assets.Mecanica2}/>
+            <ImagenServicios img={assets.Mecanica3}/>
+            <ImagenServicios img={assets.Mecanica4}/>
+          </div>
+        </div>
+
+        <div className='lg:hidden grid grid-cols-2 gap-1 pt-2'>
+          <div className='grid grid-rows-3 gap-1  '>
+            <ImagenServicios img={assets.Mecanica2} />
+            <ImagenServicios img={assets.Mecanica2} />
+            <ImagenServicios img={assets.Mecanica2} />
+          </div>
+
+          <div className='grid grid-rows-5 gap-1'>
+            <ImagenServicios img={assets.Mecanica2} />
+            <ImagenServicios img={assets.Mecanica3} />
+            <ImagenServicios img={assets.Mecanica4} />
+            <ImagenServicios img={assets.Mecanica3} />
+            <ImagenServicios img={assets.Mecanica4} />
+          </div>
+        </div>
+
       </div>
     </section>
   );
@@ -74,3 +74,102 @@ function Servicios() {
   */}
 
 export default Servicios;
+
+
+/*<section id="servicios" className="h-cover items-center justify-center text-center pb-5">
+      <div>
+        
+        <div className="relative text-center w-1/2 mx-auto py-2 bg-gradient-to-r from-red-500 to-gray-800 rounded-lg shadow-lg">
+          <h1 className="text-white text-5xl font-bold tracking-wide drop-shadow-md">
+            Nuestros servicios
+          </h1>
+          <div className="absolute inset-0 bg-opacity-50 bg-black rounded-lg hover:bg-opacity-0 transition duration-500"></div>
+        </div>
+        
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 pt-2'>
+
+            <div className='grid grid-rows-2 gap-1  '>
+
+              <ImagenServicios img={assets.Mecanica2} />
+              <ImagenServicios img={assets.Mecanica2} />
+
+            </div>
+
+            <div className='grid grid-rows-3 gap-1 '>
+
+              <ImagenServicios img={assets.Mecanica2} />
+
+              <ImagenServicios img={assets.Mecanica3} />
+
+              <ImagenServicios img={assets.Mecanica4} />
+
+            </div>
+
+            <div className='grid grid-rows-3 gap-1 '>
+
+              <ImagenServicios img={assets.Mecanica2} />
+
+              <ImagenServicios img={assets.Mecanica3} />
+
+              <ImagenServicios img={assets.Mecanica4} />
+
+            </div>
+
+          </div>
+        
+      </div>
+    </section>*/
+
+
+/*function Servi(){
+  if (screen.width > 1024){
+   return(
+          <div className='grid grid-cols-3 gap-1 pt-2'>
+
+            <div className='grid grid-rows-2 gap-1  '>
+
+              <ImagenServicios img={assets.Mecanica2} />
+              <ImagenServicios img={assets.Mecanica2} />
+
+            </div>
+
+            <div className='grid grid-rows-3 gap-1 '>
+
+              <ImagenServicios img={assets.Mecanica2} />
+              <ImagenServicios img={assets.Mecanica3} />
+              <ImagenServicios img={assets.Mecanica4} />
+
+            </div>
+
+            <div className='grid grid-rows-3 gap-1 '>
+
+              <ImagenServicios img={assets.Mecanica2} />
+              <ImagenServicios img={assets.Mecanica3} />
+              <ImagenServicios img={assets.Mecanica4} />
+
+            </div>
+
+          </div>
+   );}else {return(
+          <div className='grid grid-cols-2 gap-1 pt-2'>
+
+            <div className='grid grid-rows-3 gap-1  '>
+
+              <ImagenServicios img={assets.Mecanica2} />
+              <ImagenServicios img={assets.Mecanica2} />
+              <ImagenServicios img={assets.Mecanica2} />
+
+            </div>
+
+            <div className='grid grid-rows-5 gap-1 '>
+
+              <ImagenServicios img={assets.Mecanica2} />
+              <ImagenServicios img={assets.Mecanica3} />
+              <ImagenServicios img={assets.Mecanica4} />
+              <ImagenServicios img={assets.Mecanica3} />
+              <ImagenServicios img={assets.Mecanica4} />
+
+            </div>
+
+          </div>
+   )}}*/

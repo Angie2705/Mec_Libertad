@@ -60,7 +60,7 @@ const Header = () => {
             <button data-collapse-toggle="navbar-sticky" type="button" className=" items-center justify-center inline-flex md:hidden p-2 w-10 h-10 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 
                     dark:text-black dark:hover:bg-gray-500 dark:focus:ring-gray-500" aria-controls="navbar-sticky" aria-expanded="false">
               <svg className="w-5 h-5" aria-hidden="true" fill="none" viewBox="0 0 17 14">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
               </svg>
             </button>
           </div>

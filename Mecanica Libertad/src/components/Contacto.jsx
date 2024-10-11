@@ -1,88 +1,99 @@
 import React from 'react';
 
 function Contacto() {
+  let direc1 = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3331.1909261627734!2d-70.6781775890592!3d-33.39218277330176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c68ec9598175%3A0x9cd4c0fdc4dcc4a3!2sTeniente%20Mery%201962%2C%208551032%20Santiago%2C%20Conchal%C3%AD%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses-419!2scl!4v1728589845504!5m2!1ses-419!2scl"
+  let direc2 = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1087.5901932276338!2d-70.39289408084011!3d-23.525208001864268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x96ae298429fc0001%3A0x60515cb052155f8c!2sCalle%209%20425%2C%20galp%C3%B3n%2012-A%2C%20Antofagasta!5e0!3m2!1ses-419!2scl!4v1728596434106!5m2!1ses-419!2scl"
+  
+
+  document.addEventListener("DOMContentLoaded",() => {
+    //código a ejecutar cuando existe la certeza de que el DOM está listo para recibir acciones
+    document.getElementById("#dr1").addEventListener("click", () => {
+      console.log("ubicación 1");
+    });
+  }); 
+
+
+  function di1() {
+    console.log("ubicación 1");
+    return direc1;
+  }
+
+  function di2() {
+    console.log("ubicación 2");
+    return direc2;
+  }
+
   return (
-
-    <section id="contacto" className="h-[85vh] text-center bg-gray-100 mt-3">
-
+    <section id="contacto" className="h-full text-center bg-gray-200 px-10 pb-10 pt-5">
       <h2 className="w-full text-center text-4xl font-bold text-gray-800 p-6">Contáctanos</h2>
-      <div className='grid grid-cols-1 lg:grid-cols-3 gap-x-4 lg:gap-y-0 gap-y-8 p-2'>
-        <div className="flex flex-col text-left items-center justify-center rounded-lg md:py-10 bg-white ml-16 col-span-2 w-2/3" >
-
-          <h2 className="text-black text-center">Email</h2>
-
-          <p className="text-md text-black md:px-6 lg:px-12 lg:py-6 word-space rounded-lg text-justify" style={{ wordSpacing: '8px' }}>
-            Puedes contactarnos a través del siguiente formulario, o visitarnos en nuestra tienda física.
+      <div className='grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-x-7 gap-y-8 lg:gap-y-0'>
+        
+        <div className="bg-white rounded-lg p-6 w-full">
+          <h2 className="text-black text-2xl font-semibold text-center">Email</h2>
+          <p className="text-md text-black text-center my-5 word-space" style={{ wordSpacing: '8px' }}>
+            Contactanos por Email a través del siguiente formulario.
           </p>
 
-          <form className=" space-y-4">
+          <form className="w-full">
             <div className="flex flex-col items-center">
-              <label className="block text-sm font-bold mb-2"></label>
-              <input
-                type="text"
-                placeholder="Nombre"
-                className=" p-2 border border-gray-300 rounded"
-              />
-            </div>
-            <div className="flex flex-col items-center">
-              <label className="block text-sm font-bold mb-2"></label>
-              <input
-                type="email"
-                placeholder="Correo Electrónico"
-                className="w-full p-2 border border-gray-300 rounded"
-              />
-            </div>
 
-            <div className="flex flex-col items-center">
-              <label className="block text-sm font-bold mb-2"></label>
-              <textarea
-                placeholder="Mensaje"
-                className="w-full p-2 border border-gray-300 rounded"
-              />
+              <input type="text" id="name" placeholder="Nombre"
+                className="w-10/12 md:w-4/5 p-2 mb-4 md:mb-7 border-2 border-gray-400 rounded-xl"/>
+
+              <input type="email" id="email" placeholder="Correo Electrónico"
+                className="w-10/12 md:w-4/5 p-2 mb-4 md:mb-7 border-2 border-gray-400 rounded-xl"/>
+
+              <textarea id="message" placeholder="Mensaje"
+                className="w-10/12 md:w-4/5 h-56 p-2 mb-4 md:mb-7 border-2 border-gray-400 rounded-xl"/>
+
+              <button type="submit"
+                className="w-28 p-2 bg-red-600 text-white rounded-full hover:bg-red-700">Enviar
+              </button>
+
             </div>
-            <button
-              type="submit"
-              className="w-full p-2 bg-red-600 text-white rounded hover:bg-red-700"
-            >
-              Enviar
-            </button>
           </form>
+
         </div>
+
+        <div className="rounded-lg p-6 bg-white w-full">
+          <h2 className="text-black text-center text-2xl font-semibold mb-4">Ubicación</h2>
+          <button onClick={()=>di1()} id="dr1" className='bg-gray-400 text-white focus:outline-none focus:ring focus:ring-red-600 w-full h-10 mb-2 rounded-lg'>direccion 1</button>
+          <button onClick={()=>di2()} id="dr2" className='bg-gray-400 text-white focus:outline-none focus:ring focus:ring-red-600 w-full h-10 mb-2 rounded-lg'>direccion 2</button>
+          <iframe src={`${di1()}`} className="w-full h-64 md:h-2/3 mt-4 border-4 shadow-lg" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
       </div>
     </section>
   );
 }
 
 export default Contacto;
+    
+/*const [status, setStatus]= useState("Submit")
+  const handleSubmit = async (e) =>{
+    e.preventDefault();
+    setStatus("Sending...");
+    const {name, email, message} =e.target.elements
+    let details = {
+      name: name.value,
+      email: email.value,
+      message: message.value
+}}*/
 
+/*
+<iframe src={`${di1()}`} className="w-full h-64 md:h-2/3 mt-4 border-4 shadow-lg" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+onClick={()=>di1()}
 
-/*<section id="contacto" className="h-[85vh] flex items-center justify-center bg-gray-100 text-center">
-      <div className="max-w-xl">
-        <h2 className="text-4xl font-bold text-gray-800 mb-4">Contáctanos</h2>
-        <p className="text-lg text-gray-700 mb-4">
-          Puedes contactarnos a través del siguiente formulario, o visitarnos en nuestra tienda física.
-        </p>
-        <form className="space-y-4">
-          <input
-            type="text"
-            placeholder="Nombre"
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-          <input
-            type="email"
-            placeholder="Correo Electrónico"
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-          <textarea
-            placeholder="Mensaje"
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-          <button
-            type="submit"
-            className="w-full p-2 bg-red-600 text-white rounded hover:bg-red-700"
-          >
-            Enviar
-          </button>
-        </form>
-      </div>
-    </section>*/
+  
+  document.querySelector("#dr2").addEventListener("click", () => {
+      console.log("ubicación 2");
+    });
+    
+    
+    
+    var dir1 = document.getElementById("dr1");
+  if(dir1){
+    dir1.addEventListener("click", () => {
+      console.log("ubicación 1");
+    });
+  }*/ 
