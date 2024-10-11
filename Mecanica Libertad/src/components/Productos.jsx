@@ -4,10 +4,15 @@ import Title from './Title'
 import { get, ref } from 'firebase/database';
 import { database } from '../firebase';
 import ProductItem from './ProductItem';
+import { useNavigate } from 'react-router-dom';
 
 const Productos = () => {
 
     let [productArray, setProductsArray] = useState([]);
+
+    let admin = true;
+
+    const navigate = useNavigate();
 
     useEffect(()=>{
         const fetchData = async () =>{
@@ -18,7 +23,16 @@ const Productos = () => {
 
             if (snapShot.exists()) {
 
-                setProductsArray(Object.values(snapShot.val()))
+                const Data = snapShot.val()
+
+                const temporaryArray = Object.keys(Data).map(fireId =>{
+                    return {
+                        ...Data[fireId],
+                        productId: fireId
+                        
+                    }
+                })
+                setProductsArray(temporaryArray);
                 
             } else{
                 console.log("No hay datos")
@@ -62,7 +76,12 @@ const Productos = () => {
 
             </div> */}
             {productArray.map((key,index)=>(
-                <ProductItem key={index} image={key.imagen} name={key.nombre} price={key.precio} desc={key.desc} />
+                <div className='cursor-pointer' key={index} onClick={()=> navigate(`/producto/${key.productId}`)}> 
+                    <ProductItem key={index} image={key.imagen} name={key.nombre} price={key.precio} desc={key.desc} admin={admin} navProduct={() => navigate(`/producto/${key.productId}`)} />
+                    
+                </div>
+                
+                
             ))}
 
             </div>
@@ -72,7 +91,7 @@ const Productos = () => {
         
     </section>
     
-  )
+  ) 
 }
 
 export default Productos

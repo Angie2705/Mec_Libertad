@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import Header from '../components/Header'
-import Sidebar from '../components/SideBar'
+import Sidebar from '../components/Sidebar'
 import Inicio from '../components/Inicio'
 import Nosotros from '../components/Nosotros'
 import Servicios from '../components/Servicios'
@@ -15,13 +15,13 @@ const Home = () => {
       <Header />
       <Sidebar/>
       <div className='md:pt-16'>
-      <main className='min-h-screen'>
-        <Inicio />
-        <Nosotros />
-        <Servicios />
-        <Contacto />
-        
-      </main>
+        <main className='min-h-screen'>
+          <Inicio />
+          <Nosotros />
+          <Servicios />
+          <Contacto />
+          
+        </main>
       </div>
       <Whatsapp/>
     </>

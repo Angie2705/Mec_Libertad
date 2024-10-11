@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { database, storage } from '../firebase';
 import { getDownloadURL, ref as storageRef, uploadBytes } from 'firebase/storage';
 import { getDatabase, ref, set, push } from 'firebase/database';
@@ -8,6 +8,21 @@ const Write = () => {
   let [precio, setPrecio] = useState("");
   let [desc, setDesc] = useState("");
   let [imageFile, setImageFile] = useState(null);
+  let [caracteristica, setCaracteristica] = useState("");
+  let [caracteristicas, setCaracteristicas] = useState([]);
+
+  const handleCaracteristicas = () =>{
+    if (caracteristica.trim()) {
+      setCaracteristicas([...caracteristicas, caracteristica]);
+      setCaracteristica('');
+    }
+  }
+
+  const handleDeleteCaracteristicas = (index) =>{
+    setCaracteristicas((e)=>{
+      e.filter((_,i)=> i !== index)
+    })
+  }
 
   const handleImageChange = (e)=>{
 
@@ -50,12 +65,14 @@ const Write = () => {
         precio: precioParse,
         descripcion: desc,
         imagen: imageUrl,
+        caracteristicas: caracteristicas,
       });
       //Limpiar campos
       setNombre('');
       setPrecio('');
       setDesc('');
       setImageFile(null);
+      setCaracteristicas([]);
 
       alert("Producto agregado");
 
@@ -65,8 +82,14 @@ const Write = () => {
     
   }
 
+  useEffect(()=>{
+    console.log(caracteristicas)
+
+    
+  })
+
   return (
-    <div className='text-center p-5'>
+    <div className='grid grid-rows-5 text-center p-5 w-1/4 mx-auto gap-3'>
         <label htmlFor="">Nombre</label>
           <input className='border border-gray-400' type="text" value={nombre} onChange={(e)=>{
           setNombre(e.target.value)
@@ -81,8 +104,26 @@ const Write = () => {
         }} />
         <label htmlFor="">Imagen</label>
           <input type="file" onChange={handleImageChange} />
+        
+        <label htmlFor="">Características</label>
+        <input type="text" value={caracteristica} onChange={(e)=>{
+          setCaracteristica(e.target.value)
+        }} />
+        <button className='bg-blue-500 text-white px-2 ml-2' onClick={handleCaracteristicas}>Añadir Caracteristica</button>
+
+        <ul className='mt-2'>
+          {caracteristicas.map((carac,index)=>(
+            <li key={index} className='border-b'>Característica {index+1}: {carac} 
+            
+            <button onClick={() => handleDeleteCaracteristicas(index)}>X</button>
+            </li>
+            
+          ))}
+        </ul>
 
         <button className='bg-gray-300' onClick={handleSubmit}>Save Data</button>
+
+        
     </div>
   )
 }

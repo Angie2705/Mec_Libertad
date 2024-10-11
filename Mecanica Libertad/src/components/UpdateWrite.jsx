@@ -9,6 +9,7 @@ const UpdateWrite = () => {
     let [precio, setPrecio] = useState("");
 
     const {fireBaseId} = useParams();
+    console.log(fireBaseId)
 
     useEffect(()=>{
       const fetchData = async () =>{

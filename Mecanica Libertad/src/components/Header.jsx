@@ -7,6 +7,10 @@ const Header = () => {
   const [showNavBar, setShowNavBar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  const changeRoute = () =>{
+    context.router.push("/")
+  }
+
   const controlNavBar = () => {
     if (typeof window != 'undefined') {
       if (window.scrollY < lastScrollY) {
@@ -18,6 +22,8 @@ const Header = () => {
       setLastScrollY(window.scrollY)
     }
   }
+
+
 
   useEffect(() => {
 
@@ -32,6 +38,8 @@ const Header = () => {
 
   }, [lastScrollY]);
 
+  
+
   let Links = [
     { name: "Inicio", link: "/" },
     { name: "Nosotros", link: "/" },
@@ -43,11 +51,11 @@ const Header = () => {
   return (
       <nav className={`z-40 lg:fixed bg-white w-full top-0 shadow-md md:py-4 rounded-md transition-transform duration-700 ${showNavBar ? 'translate-y-0' : '-translate-y-full'} `}>
         <div className="md:flex items-center w-full">
-
-          <div className="md:absolute pl-5 bg-white">
+        
+          <div onClick={changeRoute} className="md:absolute pl-5 bg-white cursor-pointer">
             <img className=" " src={assets.logo} alt="" />
           </div>
-
+        
           <div onClick={() => setOpen(!open)} className="fixed end-5 top-5">
             <button data-collapse-toggle="navbar-sticky" type="button" className=" items-center justify-center inline-flex md:hidden p-2 w-10 h-10 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 
                     dark:text-black dark:hover:bg-gray-500 dark:focus:ring-gray-500" aria-controls="navbar-sticky" aria-expanded="false">

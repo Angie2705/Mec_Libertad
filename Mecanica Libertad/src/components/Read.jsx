@@ -27,7 +27,7 @@ const Read = () => {
         <button onClick={fetchData}>VerProductos</button>
         <ul>{productsArray.map((item,index)=>(
             <li key={index}>
-                {item.nombre} : {item.precio}
+                {item.nombre} : {item.precio} : {item.productId}
             </li>
         ))}
         </ul>

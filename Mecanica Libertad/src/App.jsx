@@ -5,6 +5,7 @@ import Write from './components/Write'
 import Read from './components/Read'
 import Update from './components/Update'
 import UpdateWrite from './components/UpdateWrite'
+import FichaProducto from './components/FichaProducto'
 function App() {
 
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/read' element={<Read/>}></Route>
         <Route path='/update' element={<Update/>}></Route>
         <Route path='/updatewrite/:fireBaseId' element={<UpdateWrite/>} ></Route>
+        <Route path='/producto/:fireBaseId' element={<FichaProducto/>}/>
       </Routes>
     </>
     
