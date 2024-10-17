@@ -14,7 +14,7 @@ const Home = () => {
     <> 
       <Header/>
       <Sidebar/>
-      <div className='md:pt-16'>
+      <div className='pt-16'>
         <main className='min-h-screen'>
           <Inicio />
           <Nosotros />

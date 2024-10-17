@@ -49,7 +49,7 @@ const Header = () => {
   let [open, setOpen] = useState(false);
 
   return (
-      <nav className={`z-40 lg:fixed bg-white w-full top-0 shadow-md md:py-4 rounded-md transition-transform duration-700 ${showNavBar ? 'translate-y-0' : '-translate-y-full'} `}>
+      <nav className={`z-40 fixed bg-white w-full top-0 shadow-md md:py-4 rounded-md transition-transform duration-700 ${showNavBar ? 'translate-y-0' : '-translate-y-full'} `}>
         <div className="md:flex items-center w-full">
         
           <div onClick={changeRoute} className="md:absolute pl-5 bg-white cursor-pointer">
