@@ -124,16 +124,14 @@ const Write = () => {
 
       <div className='my-2 md:my-6 md:flex justify-between'>
         <label className='mr-3 font-semibold text-lg' htmlFor="">Características:</label>
-        <textarea className='border-2 border-gray-400 rounded-xl w-full md:w-3/4 p-2' type="text" rows={3} value={caracteristica} onChange={(e) => {
+        <textarea className='border-2 border-gray-400 rounded-xl w-full md:w-3/4 p-2' type="text" rows={1} value={caracteristica} onChange={(e) => {
           setCaracteristica(e.target.value)
         }} />
       </div>
 
       <div className='flex justify-between mt-8'>
         <div>
-          <button className='bg-gray-600 hover:bg-black text-white text-base rounded-full w-48 h-10' onClick={handleCaracteristicas}>Añadir Caracteristica</button>
-
-          <ul className='mt-2'>
+        <ul className='mt-2'>
             {caracteristicas.map((carac, index) => (
               <li key={index} className='border-b'>Característica {index + 1}: {carac}
 
@@ -142,6 +140,9 @@ const Write = () => {
 
             ))}
           </ul>
+          <button className='bg-gray-600 hover:bg-black text-white text-base rounded-full w-48 h-10' onClick={handleCaracteristicas}>Añadir Caracteristica</button>
+
+          
         </div>
 
 

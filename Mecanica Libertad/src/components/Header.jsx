@@ -1,14 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { assets } from "../assets/assets";
 import { Link, NavLink } from 'react-router-dom'
+import { getAuth, signOut } from "firebase/auth";
 
-const Header = () => {
+const Header = ({user}) => {
 
   const [showNavBar, setShowNavBar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  console.log("header: "+ user)
+
   const changeRoute = () =>{
     context.router.push("/")
+  }
+
+  const logOut = () =>{
+    const auth = getAuth();
+    signOut(auth).then(()=>{
+      console.log("Log out successful")
+    }).catch((e)=>{
+      console.log("Error: " + e)
+    })
   }
 
   const controlNavBar = () => {
@@ -45,6 +57,7 @@ const Header = () => {
     { name: "Nosotros", link: "/" },
     { name: "Servicios", link: "/" },
     { name: "Productos", link: "/producto" }
+    
   ]
   let [open, setOpen] = useState(false);
 
@@ -72,7 +85,18 @@ const Header = () => {
               Links.map((Link) => (
                 <li key={Link.name} className="hover:bg-gray-200 md:hover:bg-gray-200 px-6 md:px-4 py-2 rounded-md duration-150"> <a href={Link.link}>{Link.name}</a> </li>
               ))
+
+              
             }
+            {
+              user ? <> 
+              <li key="PanelAdmin" className="hover:bg-gray-200 md:hover:bg-gray-200 px-6 md:px-4 py-2 rounded-md duration-150"> <a href={"/agregarprod"}>Administrador</a> </li>
+              <button onClick={logOut} className="bg-red-200 rounded-lg p-2">Cerrar Sesión</button>
+              </>
+              : ""
+            }
+
+            
           </ul>
         </div>
       </nav>

@@ -4,9 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { database, storage } from '../firebase';
 import Header from './Header';
 import { getDownloadURL, ref as storageRef, uploadBytes } from 'firebase/storage';
-
-const FichaProducto = () => {
-  let admin = true;
+const FichaProducto = ({admin}) => {
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");

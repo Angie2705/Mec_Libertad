@@ -3,12 +3,12 @@ import Header from '../components/Header'
 import ProductItem from '../components/ProductItem'
 import Productos from '../components/Productos'
 
-const Producto = () => {
+const Producto = ({admin}) => {
   return (
     <>
-    <Header/>
+    <Header user={admin}/>
     <div className='md:pt-20'>
-      <Productos/>
+      <Productos admin={admin}/>
     </div>
     
     </>

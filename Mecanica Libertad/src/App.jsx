@@ -7,19 +7,37 @@ import Read from './components/Read'
 import Update from './components/Update'
 import UpdateWrite from './components/UpdateWrite'
 import FichaProducto from './components/FichaProducto'
+import adminPage from './components/adminPage'
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { app, auth } from './firebase'
+import { useState } from 'react'
+import PrivateRoute from './components/privateRoute'
+
+
 function App() {
+  
+  const [user, setUser] = useState(null)
+
+  onAuthStateChanged(auth, (userFireBase) => {
+    if (userFireBase) {
+      setUser(userFireBase)
+    } else{
+      setUser(null)
+    }
+  })
 
   return (
     <>
+      {/* {user ? <adminPage useremail = {user.email}/> : <Loginad/>} */}
       <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/loginad' element={<Loginad/>}></Route>
-        <Route path='/producto' element={<Producto/>}></Route>
-        <Route path='/agregarprod' element={<Agregarprod/>}></Route>
+        <Route path='/agregarprod' element={<PrivateRoute><Agregarprod/></PrivateRoute>}></Route>
+        <Route path='/producto' element={<Producto admin={user}/>}></Route>
         <Route path='/read' element={<Read/>}></Route>
         <Route path='/update' element={<Update/>}></Route>
         <Route path='/updatewrite/:fireBaseId' element={<UpdateWrite/>} ></Route>
-        <Route path='/producto/:fireBaseId' element={<FichaProducto/>}/>
+        <Route path='/producto/:fireBaseId' element={<FichaProducto admin={user}/>}/>
       </Routes>
     </>
     

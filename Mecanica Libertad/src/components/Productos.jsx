@@ -6,11 +6,11 @@ import { database } from '../firebase';
 import ProductItem from './ProductItem';
 import { useNavigate } from 'react-router-dom';
 
-const Productos = () => {
+
+const Productos = ({admin}) => {
 
     let [productArray, setProductsArray] = useState([]);
 
-    let admin = true;
 
     const navigate = useNavigate();
 
