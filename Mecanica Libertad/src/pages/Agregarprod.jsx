@@ -4,7 +4,7 @@ import Write from "../components/Write";
 const Agregar = () => {
     return (
        <>
-       <div className='h-screen w-full bg-gray-200 flex items-center justify-center py-5'>     
+       <div className='h-screen w-full bg-red-800 flex items-center justify-center py-5'>     
             <Write/>  
         </div>
        </> 

@@ -1,2 +1,6 @@
 npm install react-router-dom react-toastify
 npm install uuid
+
+npm install react-hook-form
+
+npm i @emailjs/browser
