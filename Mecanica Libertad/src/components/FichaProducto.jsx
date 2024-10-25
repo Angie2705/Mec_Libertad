@@ -12,12 +12,19 @@ const FichaProducto = ({admin}) => {
   const [imageFile, setImageFile] = useState(null);
   const { fireBaseId } = useParams();
   const [product, setProduct] = useState([]);
-  console.log(fireBaseId)
+  const [error, setError] = useState({
+    nombre: [],
+    imagen: [],
+    precio: [],
+    desc: [],
+  })
 
   const navigate = useNavigate();
 
+
   const handleImageFile = (e) => {
     const file = e.target.files[0];
+    console.log(file)
     if (file) {
       setImageFile(file)
     }
@@ -34,15 +41,18 @@ const FichaProducto = ({admin}) => {
 
       if (snapShot.exists()) {
         const productObject = snapShot.val()
-        console.log(productObject)
+        console.log(productObject.imagen)
         setName(productObject.nombre)
         setPrice(productObject.precio)
         setDesc(productObject.descripcion)
         setImageFile(productObject.imagen)
         setProduct(productObject)
+        
       } else {
         console.log("Error")
       }
+
+      setImageFile(null)
     }
 
     fetchData()
@@ -50,48 +60,155 @@ const FichaProducto = ({admin}) => {
 
   const updateProduct = async (e) => {
     e.preventDefault()
+    console.log(imageFile)
 
-    try {
+    const errorNombre = validateName(name)
+    const errorPrecio = validatePrice(price)
+    const errorDesc = validateDesc(desc)
+    const errorImg = validateImage(imageFile)
+    
+    console.log(errorNombre)
 
-      let imgUrl = "";
-
-      if (imageFile) {
-        const imgStorageRef = storageRef(storage, `productos/${imageFile.name}`)
-
-        const snapshotImage = await uploadBytes(imgStorageRef, imageFile);
-        console.log("Imagen subida correctamente: " + snapshotImage)
-
-        imgUrl = getDownloadURL(imgStorageRef)
-      }
-
-      const dbRef = ref(database, 'productos/' + fireBaseId)
-
-      if (!imgUrl) {
-        throw new Error("No se pudo obtener el URL de la imagen")
-      }
-
-
-
-      await set(dbRef, {
-        nombre: name,
-        precio: price,
-        descripcion: desc,
-        imagen: imgUrl,
-      })
-
-      setName("")
-      setPrice("")
-      setDesc("")
-      setImageFile(null)
-      console.log("Producto cambiado correctamente")
-      navigate('/producto')
-
-    } catch (error) {
-      console.log("Error: " + error)
+    if (errorNombre) {
+      console.log("error nombre")
     }
+
+    if (errorNombre || errorPrecio || errorDesc || errorImg) {
+      setError({
+        nombre: errorNombre ? errorNombre : [],
+        imagen: errorImg ? [errorImg]: [],
+        precio: errorPrecio ? [errorPrecio] : [],
+        desc: errorDesc ? [errorDesc] : [],
+      })
+      console.log(error)
+    
+    } else{
+      try {
+
+        let imgUrl = "";
+  
+        if (imageFile) {
+          const imgStorageRef = storageRef(storage, `productos/${imageFile.name}`)
+  
+          const snapshotImage = await uploadBytes(imgStorageRef, imageFile);
+          console.log("Imagen subida correctamente: " + snapshotImage)
+  
+          imgUrl = await getDownloadURL(imgStorageRef)
+        }
+  
+        const dbRef = ref(database, 'productos/' + fireBaseId)
+  
+        if (!imgUrl) {
+          throw new Error("No se pudo obtener el URL de la imagen")
+        }
+  
+  
+  
+        await set(dbRef, {
+          nombre: name,
+          precio: price,
+          descripcion: desc,
+          imagen: imgUrl,
+        })
+  
+        setName("")
+        setPrice("")
+        setDesc("")
+        setImageFile(null)
+        console.log("Producto cambiado correctamente")
+        navigate('/producto')
+  
+      } catch (error) {
+        console.log("Error: " + error)
+      }
+    }
+
   }
 
-  console.log(product)
+  const validateName = (nombre) => {
+
+    let errores = [];
+    if (!nombre.trim()) {
+        errores.push("El nombre no puede estar vacío") ;
+    }
+    if (nombre.length >= 50) {
+        errores.push("El nombre no puede ser mayor a 50 caracteres");
+    }
+    const regex = /^[a-zA-Z\s]*$/;
+    if (!regex.test(nombre)) {
+        errores.push("El nombre no puede tener caracteres especiales o números");
+    }
+
+    
+    return errores.length > 0 ? errores : null; // No hay error
+};
+  const validatePrice = (precio) =>{
+    if (precio === '') {
+      return "El precio no puede estar vacío"
+    }
+    const regex = /^\d+$/
+    if (!regex.test(precio)) {
+      return "El precio solo deben ser valores numéricos"
+    }
+
+    return null;
+  }
+
+  const validateDesc = (desc) =>{
+
+    if (desc.length >= 200) {
+      return "La descripción no puede superar los 200 caracteres"
+    }
+
+    return null;
+  }
+
+  const validateImage = (imagen)=>{
+    if (!imagen) {
+      return "La imágen es obligatoria"
+    }
+  }
+//FIN VALIDACIÓN ERRORES
+
+
+//MANEJO PROPIEDADES
+  const handleName = (e) =>{
+    const value = e.target.value 
+    setName(value)
+    
+    const error = validateName(value)
+
+    setError((e)=>({
+      ...e,
+      nombre: error ? [error] : []
+      
+    }))
+  }
+
+  const handlePrice = (e) =>{
+    const value = e.target.value
+    setPrice(value)
+    
+    const error = validatePrice(value)
+
+    setError((e)=>({
+      ...e,
+      precio: error ? [error] : []
+    }))
+
+
+  }
+
+  const handleDesc = (e) =>{
+    const value = e.target.value
+    setDesc(value)
+    const error = validateDesc(value)
+
+    setError((e)=>({
+      ...e,
+      desc: error ? [error] : []
+    }))
+  }
 
   return product ? (
     <>
@@ -121,25 +238,51 @@ const FichaProducto = ({admin}) => {
                   <div className='flex flex-col mb-4'>
                     <label htmlFor="" className='mb-1 font-medium text-lg'>Nombre</label>
                     <input type="text" className='bg-gray-700 text-white rounded-xl text-md w-full lg:w-11/12 p-3'
-                       value={name} onChange={(e) => {
-                        setName(e.target.value)
-                      }}/>
+                       value={name} onChange={handleName}/>
+                    {/*Manejo Errores Nombre */}
+                    {error.nombre.length > 0 && (
+                      <ul className='list-disc list-inside text-red-500 text-sm mt-2'>
+                        {error.nombre.flat().map((err,index)=>(
+                          <li key={index}>{err}</li>
+                        ))}
+                      </ul>
+                    )}   
 
                     <label htmlFor="" className='mt-4 mb-1 font-medium text-lg'>Imagen:</label>
                     <input type="file" className='bg-gray-700 text-white rounded-xl text-md w-full lg:w-11/12 p-3' 
                       onChange={handleImageFile}/>
+                     {/*Manejo Errores Imagen */}
+                    {error.imagen.length > 0 && (
+                      <ul className='list-disc list-inside text-red-500 text-sm mt-2'>
+                        {error.imagen.map((err,index)=>(
+                          <li key={index}>{err}</li>
+                        ))}
+                      </ul>
+                    )} 
 
                     <label htmlFor="" className='mt-4 mb-1 font-medium text-lg'>Descripción:</label>
                     <textarea className='h-screen text-md bg-gray-700 text-white rounded-xl w-full lg:w-11/12 lg:h-60 p-3' 
-                      name="" value={desc} onChange={(e) => {
-                      setDesc(e.target.value)
-                    }}></textarea>
+                      name="" value={desc} onChange={handleDesc}></textarea>
+                     {/*Manejo Errores Descripción */}
+                     {error.desc.length > 0 && (
+                      <ul className='list-disc list-inside text-red-500 text-sm mt-2'>
+                        {error.desc.map((err,index)=>(
+                          <li key={index}>{err}</li>
+                        ))}
+                      </ul>
+                    )} 
 
                     <label htmlFor="" className='mt-4 mb-1 font-medium text-lg'>Precio aproximado:</label>
                     <input type="text" className='bg-gray-700 text-white rounded-xl text-md w-full lg:w-11/12 p-3' 
-                      value={price} onChange={(e) => {
-                      setPrice(e.target.value)
-                    }} />
+                      value={price} onChange={handlePrice} />
+                     {/*Manejo Errores Precio */}
+                     {error.precio.length > 0 && (
+                      <ul className='list-disc list-inside text-red-500 text-sm mt-2'>
+                        {error.precio.map((err,index)=>(
+                          <li key={index}>{err}</li>
+                        ))}
+                      </ul>
+                    )} 
 
                     <button className='mt-5 px-4 py-2 w-40 text-base rounded-full bg-red-600 text-white hover:bg-red-700' onClick={updateProduct}>Realizar Cambios</button>
                   </div>

@@ -28,21 +28,21 @@ const Forml = () => {
         }
     };
 
-    const functionAuth1 = async (e) => {
+    // const functionAuth1 = async (e) => {
 
-        const email = e.target.email.value;
-        const password = e.target.password.value;
+    //     const email = e.target.email.value;
+    //     const password = e.target.password.value;
 
-        console.log(auth)
-        console.log("e")
+    //     console.log(auth)
+    //     console.log("e")
 
-        if (regis) {
-            await createUserWithEmailAndPassword(auth, email, password)
-        } else {
-            await signInWithEmailAndPassword(auth, email, password)
-            navigate('/')
-        }
-    }
+    //     if (regis) {
+    //         await createUserWithEmailAndPassword(auth, email, password)
+    //     } else {
+    //         await signInWithEmailAndPassword(auth, email, password)
+    //         navigate('/')
+    //     }
+    // }
 
 
     return (
