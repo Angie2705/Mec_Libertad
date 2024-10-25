@@ -227,10 +227,10 @@ const validateName = (nombre) => {
 
 
   return (
-    <form className='bg-white py-6 lg:py-7 px-6 lg:px-20 w-4/5 md:w-3/5  rounded-2xl shadow-md'>
+    <form className='bg-white py-6 lg:py-7 px-6 lg:px-20 w-4/5 md:w-3/5 rounded-2xl shadow-md'>
       <div className='absolute'>
         <button className='text-black border-2 border-gray-400 hover:bg-gray-400 text-lg rounded-full w-10 h-10'>
-          <a href="">X</a>
+          <a href="/">X</a>
         </button>
       </div>
 
@@ -326,8 +326,6 @@ const validateName = (nombre) => {
 
         <button onClick={handleSubmit} className='bg-red-600 text-white hover:bg-red-700 text-base rounded-full justify-end w-24 h-10'>Guardar</button>
       </div>
-
-
 
     </form>
   )

@@ -7,7 +7,7 @@ const Producto = ({admin}) => {
   return (
     <>
     <Header user={admin}/>
-    <div className='md:pt-20'>
+    <div className='mt-24'>
       <Productos admin={admin}/>
     </div>
     

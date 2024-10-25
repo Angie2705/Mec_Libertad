@@ -48,13 +48,9 @@ const Productos = ({admin}) => {
         fetchData();
     }, [database])
 
-
-    
-
-
   return (
-    <section id='productos' className='w-10/12 min-h-screen mx-auto'>
-        <div className='text-center sm:text-left sm:text-3xl'>
+    <section id='productos' className='w-10/12 min-h-screen mx-auto '>
+        <div className='text-left text-2xl sm:text-3xl'>
             <div className='inline-flex gap-2 items-center mb-3'>
             <p className=' text-gray-500'>Nuestros <span className=' text-red-700 font-medium'>Productos</span></p>
             <p className='w-8 sm:w-12 h-[1px] sm:h-[2px] bg-red-700'></p>
