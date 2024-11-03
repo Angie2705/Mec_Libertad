@@ -7,6 +7,7 @@ import Read from './components/Read'
 import Update from './components/Update'
 import UpdateWrite from './components/UpdateWrite'
 import FichaProducto from './components/FichaProducto'
+import TablaAdmin from './components/TablaAdmin'
 import adminPage from './components/adminPage'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { app, auth } from './firebase'
@@ -32,6 +33,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/loginad' element={<Loginad/>}></Route>
+        <Route path='/tablaadmin' element={<PrivateRoute><TablaAdmin admin={user}/></PrivateRoute>}></Route>
         <Route path='/agregarprod' element={<PrivateRoute><Agregarprod/></PrivateRoute>}></Route>
         <Route path='/producto' element={<Producto admin={user}/>}></Route>
         <Route path='/read' element={<Read/>}></Route>

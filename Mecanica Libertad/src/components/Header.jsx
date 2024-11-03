@@ -36,7 +36,6 @@ const Header = ({user}) => {
   }
 
 
-
   useEffect(() => {
 
     if (typeof window != 'undefined') {
@@ -46,7 +45,6 @@ const Header = ({user}) => {
         window.removeEventListener('scroll', controlNavBar)
       };
     }
-
 
   }, [lastScrollY]);
 
@@ -66,7 +64,7 @@ const Header = ({user}) => {
         <div className="md:flex items-center w-full">
         
           <div onClick={changeRoute} className="md:absolute pl-5 bg-white cursor-pointer">
-            <img className=" " src={assets.logo} alt="" />
+            <img src={assets.logo} alt="" />
           </div>
         
           <div onClick={() => setOpen(!open)} className="fixed end-5 top-5">
@@ -90,7 +88,7 @@ const Header = ({user}) => {
             }
             {
               user ? <> 
-              <li key="PanelAdmin" className="hover:bg-gray-200 md:hover:bg-gray-200 px-6 md:px-4 py-2 rounded-md duration-150"> <a href={"/agregarprod"}>Administrador</a> </li>
+              <li key="PanelAdmin" className="hover:bg-gray-200 md:hover:bg-gray-200 px-6 md:px-4 py-2 rounded-md duration-150"> <a href={"/tablaadmin"}>Administrador</a> </li>
               <button onClick={logOut} className="bg-red-200 rounded-lg p-2">Cerrar Sesión</button>
               </>
               : ""

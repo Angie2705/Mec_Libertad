@@ -27,7 +27,7 @@ const Write = () => {
 
   const handleDeleteCaracteristicas = (e, index) => {
     e.preventDefault(); // Previene el reinicio de la página
-    setCaracteristicas((prevCaracteristicas) => 
+    setCaracteristicas((prevCaracteristicas) =>
       prevCaracteristicas.filter((_, i) => i !== index)
     );
   };
@@ -37,14 +37,14 @@ const Write = () => {
     const file = e.target.files[0];
     if (file) {
       setImageFile(file); // Guardamos el archivo de imagen
-    } else{
+    } else {
       let errores = ["La imagen es obligatoria"]
-      setError((e)=>({
+      setError((e) => ({
         ...e,
         imagen: errores
       }))
 
-      
+
     }
 
   }
@@ -53,7 +53,7 @@ const Write = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
 
     const precioParse = parseInt(precio, 10);
 
@@ -61,7 +61,7 @@ const Write = () => {
     const errorPrecio = validatePrice(precio)
     const errorDesc = validateDesc(desc)
     const errorImg = validateImage(imageFile)
-    
+
     console.log(errorNombre)
 
     if (errorNombre) {
@@ -71,61 +71,54 @@ const Write = () => {
     if (errorNombre || errorPrecio || errorDesc || errorImg) {
       setError({
         nombre: errorNombre ? errorNombre : [],
-        imagen: errorImg ? [errorImg]: [],
+        imagen: errorImg ? [errorImg] : [],
         precio: errorPrecio ? [errorPrecio] : [],
         desc: errorDesc ? [errorDesc] : [],
       })
       console.log(error)
-      
-       
-      
-    
-    }         
-    else{
+    }
+    else {
       let descPredeterminada = "Aún no hay una descripción para este producto";
       try {
-
-       
-
         let imageUrl = "";
-  
+
         if (imageFile) {
           const imgStorageRef = storageRef(storage, `productos/${imageFile.name}`)
-  
+
           //Subida de imagen al storage
           const snapshot = await uploadBytes(imgStorageRef, imageFile);
           console.log('Imagen subida correctamente', snapshot)
-  
+
           imageUrl = await getDownloadURL(imgStorageRef);
         }
-  
+
         if (!imageUrl) {
           throw new Error("No se pudo obtener la URL de la imagen.");
         }
-  
+
         //referencia a la ubicación de la bd donde se guardará
         const productsRef = ref(database, 'productos');
-        
-        
+
+
         //Se usa await para esperar a que push finalice antes de continuar
         await push(productsRef, {
           nombre: nombre,
           precio: precioParse,
-          descripcion: desc === "" ? descPredeterminada: desc,
+          descripcion: desc === "" ? descPredeterminada : desc,
           imagen: imageUrl,
           caracteristicas: caracteristicas,
         });
-  
-        
+
+
         //Limpiar campos
         setNombre('');
         setPrecio('');
         setDesc('');
         setImageFile(null);
         setCaracteristicas([]);
-  
+
         alert("Producto agregado");
-  
+
       } catch (error) {
         console.error("Error al agregar producto: ", error);
       }
@@ -135,29 +128,28 @@ const Write = () => {
   }
 
   useEffect(() => {
-   
+
   })
 
- //VALIDACIÓN ERRORES
+  //VALIDACIÓN ERRORES
 
-const validateName = (nombre) => {
+  const validateName = (nombre) => {
 
     let errores = [];
     if (!nombre.trim()) {
-        errores.push("El nombre no puede estar vacío") ;
+      errores.push("El nombre no puede estar vacío");
     }
     if (nombre.length >= 50) {
-        errores.push("El nombre no puede ser mayor a 50 caracteres");
+      errores.push("El nombre no puede ser mayor a 50 caracteres");
     }
     const regex = /^[a-zA-Z\s]*$/;
     if (!regex.test(nombre)) {
-        errores.push("El nombre no puede tener caracteres especiales o números");
+      errores.push("El nombre no puede tener caracteres especiales o números");
     }
-
-    
     return errores.length > 0 ? errores : null; // No hay error
-};
-  const validatePrice = (precio) =>{
+  };
+
+  const validatePrice = (precio) => {
     if (precio === '') {
       return "El precio no puede estar vacío"
     }
@@ -165,61 +157,56 @@ const validateName = (nombre) => {
     if (!regex.test(precio)) {
       return "El precio solo deben ser valores numéricos"
     }
-
     return null;
   }
 
-  const validateDesc = (desc) =>{
+  const validateDesc = (desc) => {
 
     if (desc.length >= 200) {
       return "La descripción no puede superar los 200 caracteres"
     }
-
     return null;
   }
 
-  const validateImage = (imagen)=>{
+  const validateImage = (imagen) => {
     if (!imagen) {
       return "La imágen es obligatoria"
     }
   }
-//FIN VALIDACIÓN ERRORES
+  //FIN VALIDACIÓN ERRORES
 
 
-//MANEJO PROPIEDADES
-  const handleName = (e) =>{
-    const value = e.target.value 
+  //MANEJO PROPIEDADES
+  const handleName = (e) => {
+    const value = e.target.value
     setNombre(value)
-    
+
     const error = validateName(value)
 
-    setError((e)=>({
+    setError((e) => ({
       ...e,
       nombre: error ? [error] : []
-      
     }))
   }
 
-  const handlePrice = (e) =>{
+  const handlePrice = (e) => {
     const value = e.target.value
     setPrecio(value)
-    
+
     const error = validatePrice(value)
 
-    setError((e)=>({
+    setError((e) => ({
       ...e,
       precio: error ? [error] : []
     }))
-
-
   }
 
-  const handleDesc = (e) =>{
+  const handleDesc = (e) => {
     const value = e.target.value
     setDesc(value)
     const error = validateDesc(value)
 
-    setError((e)=>({
+    setError((e) => ({
       ...e,
       desc: error ? [error] : []
     }))
@@ -230,7 +217,7 @@ const validateName = (nombre) => {
     <form className='bg-white py-6 lg:py-7 px-6 lg:px-20 w-4/5 md:w-3/5 rounded-2xl shadow-md'>
       <div className='absolute'>
         <button className='text-black border-2 border-gray-400 hover:bg-gray-400 text-lg rounded-full w-10 h-10'>
-          <a href="/">X</a>
+          <a href="/tablaadmin">X</a>
         </button>
       </div>
 
@@ -243,12 +230,12 @@ const validateName = (nombre) => {
         {/*Manejo Errores Nombre */}
         {error.nombre.length > 0 && (
           <ul className='list-disc list-inside text-red-500 text-sm mt-2'>
-            {error.nombre.flat().map((err,index)=>(
+            {error.nombre.flat().map((err, index) => (
               <li key={index}>{err}</li>
             ))}
           </ul>
         )}
-        
+
       </div>
 
       <div className='my-2 md:my-6 md:flex flex-col justify-between items-center'>
@@ -256,11 +243,11 @@ const validateName = (nombre) => {
         <input className='border-2 border-gray-400 rounded-xl w-full md:w-3/4 p-2' type="file" onChange={handleImageChange} />
         {/*Manejo Errores Imagen */}
         {
-          error.imagen.length >0 && (
+          error.imagen.length > 0 && (
             <ul className='list-disc list-inside text-red-500 text-sm ml-2 mt-2'>
-            {error.imagen.map((error,index)=>(
-              <li key={index}>{error}</li>
-            ))}
+              {error.imagen.map((error, index) => (
+                <li key={index}>{error}</li>
+              ))}
             </ul>
           )
         }
@@ -268,13 +255,13 @@ const validateName = (nombre) => {
 
       <div className='my-2 md:my-6 md:flex flex-col justify-between items-center'>
         <label className='mr-3 font-semibold text-lg' htmlFor="">Precio:</label>
-        <input className='border-2 border-gray-400 rounded-xl w-full md:w-3/4 p-2' type="text" value={precio} onChange={handlePrice} />{}
+        <input className='border-2 border-gray-400 rounded-xl w-full md:w-3/4 p-2' type="text" value={precio} onChange={handlePrice} />{ }
         {/*Manejo Errores Precio */}
         {
           error.precio.length > 0 && (
             <ul className='list-disc list-inside text-red-500 text-sm mt-2'>
               {
-                error.precio.map((err,index)=>(
+                error.precio.map((err, index) => (
                   <li key={index}>{err}</li>
                 ))
               }
@@ -291,7 +278,7 @@ const validateName = (nombre) => {
           error.desc.length > 0 && (
             <ul className='list-disc list-inside text-red-500 text-sm mt-2'>
               {
-                error.desc.map((err,index)=>(
+                error.desc.map((err, index) => (
                   <li key={index}>{err}</li>
                 ))
               }
@@ -309,18 +296,18 @@ const validateName = (nombre) => {
 
       <div className='flex justify-between mt-8'>
         <div>
-        <ul className='mt-2'>
+          <ul className='mt-2'>
             {caracteristicas.map((carac, index) => (
               <li key={index} className='border-b'>Característica {index + 1}: {carac}
 
-                <button onClick={(e) => handleDeleteCaracteristicas(e,index)}>X</button>
+                <button onClick={(e) => handleDeleteCaracteristicas(e, index)}>X</button>
               </li>
 
             ))}
           </ul>
           <button className='bg-gray-600 hover:bg-black text-white text-base rounded-full w-48 h-10' onClick={handleCaracteristicas}>Añadir Caracteristica</button>
 
-          
+
         </div>
 
 

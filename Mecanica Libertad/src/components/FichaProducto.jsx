@@ -262,7 +262,7 @@ const FichaProducto = ({admin}) => {
 
                     <label htmlFor="" className='mt-4 mb-1 font-medium text-lg'>Descripción:</label>
                     <textarea className='h-screen text-md bg-gray-700 text-white rounded-xl w-full lg:w-11/12 lg:h-60 p-3' 
-                      name="" value={desc} onChange={handleDesc}></textarea>
+                      wrap="hard" name="" value={desc} onChange={handleDesc}></textarea>
                      {/*Manejo Errores Descripción */}
                      {error.desc.length > 0 && (
                       <ul className='list-disc list-inside text-red-500 text-sm mt-2'>
