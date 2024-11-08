@@ -2,12 +2,13 @@ import React from 'react'
 import Header from '../components/Header'
 import ProductItem from '../components/ProductItem'
 import Productos from '../components/Productos'
+import Sidebar from '../components/Sidebar'
 
 const Producto = ({admin}) => {
   return (
     <>
     <Header user={admin}/>
-    <div className='md:pt-20'>
+    <div className='mt-24'>
       <Productos admin={admin}/>
     </div>
     

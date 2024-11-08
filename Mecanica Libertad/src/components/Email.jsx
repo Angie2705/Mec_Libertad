@@ -84,7 +84,7 @@ const Email = () => {
                     
                 </div>
 
-                <button type="submit" value="Send" className="w-28 p-2 mb-3 bg-red-600 
+                <button type="submit" value="Send" className=" w-28 text-lg p-2 mb-3 bg-red-600 
                     text-white rounded-full hover:bg-red-700">Enviar</button>
 
             </form>

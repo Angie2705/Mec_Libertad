@@ -39,12 +39,15 @@ const Home = () => {
           <Nosotros />
           <Servicios />
           <section id="contacto" className="text-center bg-gray-200 px-16 lg:px-16 pb-10 pt-5">
-            <h2 className="w-full text-center text-4xl font-bold text-gray-800 p-6">Contáctanos</h2>
+            <h2 className="w-full text-center text-4xl font-bold text-black p-6">Contáctanos</h2>
             <div className='flex flex-col lg:flex-row gap-x-10 gap-y-10 lg:gap-y-0'>
               <Email />
               <Ubicacion />
             </div>
           </section>
+          <div className='bg-gray-800 h-40'>
+
+          </div>
         </main>
       </div>
       <Whatsapp />
