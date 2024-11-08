@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { database } from '../firebase'
+import { db } from '../firebase'
 import { get, ref } from 'firebase/database';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ const Update = () => {
 
     const fetchData = async () =>{
         
-        const dbRef = ref(database, "productos")
+        const dbRef = ref(db, "productos")
 
         const snapShot = await get(dbRef);
 

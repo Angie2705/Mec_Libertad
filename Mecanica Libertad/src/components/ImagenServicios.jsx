@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const ImagenServicios = ({ img }) => {
+const ImagenServicios = ({ img, titulo, descripcion }) => {
 
   const [cardVisible, setCardVisible] = useState(false)
 
@@ -19,7 +19,7 @@ const ImagenServicios = ({ img }) => {
         </a>
 
         <figcaption className="absolute px-4 text-base md:text-lg text-white bottom-4 mt-4 flex flex-col items-center left-1/2 transform -translate-x-1/2">
-          <p>Trabajos en plásticos técnicos.</p>
+          <p>{titulo}</p>
           <button onClick={mostrarCard} className="mt-2 bg-slate-500 hover:bg-slate-700 text-white font-bold text-sm py-2 px-4 rounded-full 
             opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100">Ver más</button>
         </figcaption>
@@ -34,8 +34,8 @@ const ImagenServicios = ({ img }) => {
               className="absolute top-0 right-3 text-gray-600 hover:text-gray-800 text-3xl p">
               &times; 
             </button>
-            <h2 className="text-lg font-semibold">Trabajos en plásticos técnicos</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea explicabo fugiat voluptate consequatur! Quasi sapiente quam explicabo unde facilis aspernatur velit, magnam culpa non a est ut consequuntur ducimus quis.</p>
+            <h2 className="text-lg font-semibold">{titulo}</h2>
+            <p>{descripcion}</p>
             <button
               onClick={cerrarCard}
               className="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { database, storage } from '../firebase';
+import {  db, storage } from '../firebase';
 import { getDownloadURL, ref as storageRef, uploadBytes } from 'firebase/storage';
 import { getDatabase, ref, set, push } from 'firebase/database';
+import { collection, addDoc } from 'firebase/firestore';
 
 const Write = () => {
   let [nombre, setNombre] = useState("");
@@ -104,11 +105,11 @@ const Write = () => {
         }
   
         //referencia a la ubicación de la bd donde se guardará
-        const productsRef = ref(database, 'productos');
+        const productsRef = collection(db, 'productos');
         
         
         //Se usa await para esperar a que push finalice antes de continuar
-        await push(productsRef, {
+        await addDoc(productsRef, {
           nombre: nombre,
           precio: precioParse,
           descripcion: desc === "" ? descPredeterminada: desc,

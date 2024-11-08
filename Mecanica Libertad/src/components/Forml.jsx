@@ -5,7 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 
 
+
 const Forml = () => {
+
+
+
 
     const navigate = useNavigate();
     const [regis, setRegister] = useState(false);
@@ -26,7 +30,25 @@ const Forml = () => {
                 alert('Correo o constraseña Inválidos');
             }
         }
+
+        
     };
+
+    
+
+
+
+    useEffect(()=>{
+
+        
+
+        const logOut = () =>{
+            auth.signOut()
+        }
+
+        window.addEventListener('beforeunload', logOut)
+        return () => window.removeEventListener('beforeunload', logOut)
+    }, [])
 
     // const functionAuth1 = async (e) => {
 

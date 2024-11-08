@@ -4,3 +4,10 @@ npm install uuid
 npm install react-hook-form
 
 npm i @emailjs/browser
+
+npm install express @google-cloud/dialogflow cors
+npm install express cors body-parser
+
+npm install -g firebase-tools
+firebase login
+firebase init functions

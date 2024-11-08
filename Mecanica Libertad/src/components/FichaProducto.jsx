@@ -1,9 +1,10 @@
 import { get, ref, set } from 'firebase/database';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { database, storage } from '../firebase';
+import { db, storage } from '../firebase';
 import Header from './Header';
 import { getDownloadURL, ref as storageRef, uploadBytes } from 'firebase/storage';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 const FichaProducto = ({admin}) => {
 
   const [name, setName] = useState("");
@@ -35,12 +36,12 @@ const FichaProducto = ({admin}) => {
 
     const fetchData = async () => {
 
-      const dbRef = ref(database, 'productos/' + fireBaseId);
+      const dbRef = doc(db, 'productos/' + fireBaseId);
 
-      const snapShot = await get(dbRef);
+      const snapShot = await getDoc(dbRef);
 
       if (snapShot.exists()) {
-        const productObject = snapShot.val()
+        const productObject = snapShot.data()
         console.log(productObject.imagen)
         setName(productObject.nombre)
         setPrice(productObject.precio)
@@ -96,7 +97,7 @@ const FichaProducto = ({admin}) => {
           imgUrl = await getDownloadURL(imgStorageRef)
         }
   
-        const dbRef = ref(database, 'productos/' + fireBaseId)
+        const dbRef = doc(db, 'productos/' + fireBaseId)
   
         if (!imgUrl) {
           throw new Error("No se pudo obtener el URL de la imagen")
@@ -104,7 +105,7 @@ const FichaProducto = ({admin}) => {
   
   
   
-        await set(dbRef, {
+        await setDoc(dbRef, {
           nombre: name,
           precio: price,
           descripcion: desc,

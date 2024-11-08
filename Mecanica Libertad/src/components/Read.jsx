@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { database } from '../firebase'
+import { db } from '../firebase'
 import { ref,  get } from 'firebase/database'
 const Read = () => {
 
@@ -7,7 +7,7 @@ const Read = () => {
 
     const fetchData = async () =>{
         
-        const dbRef = ref(database, "productos")
+        const dbRef = ref(db, "productos")
 
         const snapShot = await get(dbRef);
 

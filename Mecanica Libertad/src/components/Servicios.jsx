@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import Title from './Title';
 import { assets } from '../assets/assets';
 import ImagenServicios from './imagenServicios';
-
+import { servicesList } from '../assets/infoServicios';
 function Servicios() {
+
+  const titulo1 = "Servicio1"
+  const descripcion1 = "Descripcion1"
 
   return (
     <section id="servicios" className="h-cover items-center justify-center text-center pb-5 mt-10">
@@ -18,20 +21,20 @@ function Servicios() {
 
         <div className='hidden lg:grid grid-cols-3 gap-1 pt-2'>
           <div className='grid grid-rows-2 gap-1'>
-            <ImagenServicios img={assets.Mecanica2}/>
-            <ImagenServicios img={assets.Mecanica2}/>
+            <ImagenServicios img={assets.Mecanica1} titulo={servicesList.service1.nombre} descripcion={servicesList.service1.descripcion}/>
+            <ImagenServicios img={assets.Mecanica2} titulo={servicesList.service2.nombre} descripcion={servicesList.service2.descripcion}/>
           </div>
 
           <div className='grid grid-rows-3 gap-1'>
-            <ImagenServicios img={assets.Mecanica2}/>
-            <ImagenServicios img={assets.Mecanica3}/>
+            <ImagenServicios img={assets.Mecanica3} titulo={servicesList.service3.nombre} descripcion={servicesList.service3.descripcion}/>
             <ImagenServicios img={assets.Mecanica4}/>
+            <ImagenServicios img={assets.Mecanica5}/>
           </div>
 
           <div className='grid grid-rows-3 gap-1'>
-            <ImagenServicios img={assets.Mecanica2}/>
-            <ImagenServicios img={assets.Mecanica3}/>
-            <ImagenServicios img={assets.Mecanica4}/>
+            <ImagenServicios img={assets.Mecanica6}/>
+            <ImagenServicios img={assets.Mecanica7}/>
+            <ImagenServicios img={assets.Mecanica1}/>
           </div>
         </div>
 

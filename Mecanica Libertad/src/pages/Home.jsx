@@ -48,6 +48,7 @@ const Home = () => {
         </main>
       </div>
       <Whatsapp />
+
     </>
   )
 }

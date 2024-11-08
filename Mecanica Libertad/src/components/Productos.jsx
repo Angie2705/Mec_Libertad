@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { assets } from '../assets/assets'
 import Title from './Title'
 import { get, ref } from 'firebase/database';
-import { database } from '../firebase';
+import { db } from '../firebase';
 import ProductItem from './ProductItem';
 import { useNavigate } from 'react-router-dom';
+import { collection, getDocs } from 'firebase/firestore';
 
 
 const Productos = ({admin}) => {
@@ -18,25 +19,20 @@ const Productos = ({admin}) => {
         const fetchData = async () =>{
 
             try {
-                const dbRef = ref(database, "productos")
-                const snapShot = await get(dbRef)
-
-            if (snapShot.exists()) {
-
-                const Data = snapShot.val()
-
-                const temporaryArray = Object.keys(Data).map(fireId =>{
-                    return {
-                        ...Data[fireId],
-                        productId: fireId
-                        
-                    }
-                })
-                setProductsArray(temporaryArray);
+                const dbRef = collection(db, "productos")
+                const snapShot = await getDocs(dbRef)
                 
-            } else{
-                console.log("No hay datos")
-            }
+                if (!snapShot.empty) {
+                    
+                    const temporaryArray = snapShot.docs.map((doc) => ({
+                      ...doc.data(),
+                      productId: doc.id, 
+                    }));
+                    
+                    setProductsArray(temporaryArray); 
+                  } else {
+                    console.log("No hay datos en la colección productos");
+                  }
                 
             } catch (error) {
                 console.error("Error fetching data", error)
@@ -46,7 +42,7 @@ const Productos = ({admin}) => {
         console.log(productArray)
 
         fetchData();
-    }, [database])
+    }, [db])
 
 
     

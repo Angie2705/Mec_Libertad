@@ -12,7 +12,8 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { app, auth } from './firebase'
 import { useState } from 'react'
 import PrivateRoute from './components/privateRoute'
-
+import Chatbot from './components/chatBot'
+import ChatWidget from './components/Chat'
 
 function App() {
   
@@ -39,6 +40,9 @@ function App() {
         <Route path='/updatewrite/:fireBaseId' element={<UpdateWrite/>} ></Route>
         <Route path='/producto/:fireBaseId' element={<FichaProducto admin={user}/>}/>
       </Routes>
+      <ChatWidget/>
+
+
     </>
     
     

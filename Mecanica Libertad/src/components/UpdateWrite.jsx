@@ -1,6 +1,6 @@
 import { push, ref, set, get } from 'firebase/database';
 import React, { useState, useEffect } from 'react'
-import { database } from '../firebase';
+import { db } from '../firebase';
 import { useParams } from 'react-router-dom';
 
 
@@ -14,7 +14,7 @@ const UpdateWrite = () => {
     useEffect(()=>{
       const fetchData = async () =>{
 
-        const dbRef = ref(database, 'productos/'+fireBaseId);
+        const dbRef = ref(db, 'productos/'+fireBaseId);
 
         const snapShot = await get(dbRef);
 

@@ -4,6 +4,8 @@ import { getAnalytics } from "firebase/analytics";
 import { getDatabase } from "firebase/database";
 import { getStorage } from 'firebase/storage';
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -12,7 +14,7 @@ import { getAuth } from "firebase/auth";
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_APP_FIREBASE_API_KEY, 
   authDomain: import.meta.env.VITE_APP_FIREBASE_AUTH_DOMAIN,
-  databaseUrl: import.meta.env.VITE_APP_FIREBASE_DATABASE_URL,
+  // databaseUrl: import.meta.env.VITE_APP_FIREBASE_DATABASE_URL,
   projectId: import.meta.env.VITE_APP_FIREBASE_PROJECT_ID,
   storageBucket: import.meta.env.VITE_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE_APP_MESSAGING_SENDER_ID,
@@ -24,7 +26,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-const database = getDatabase(app);
+// const database = getDatabase(app);
 const storage = getStorage(app);
 const auth = getAuth(app)
-export {database, storage, app, auth};
+const db = getFirestore(app)
+export {db, storage, app, auth};
