@@ -8,12 +8,10 @@ import { useForm } from "react-hook-form";
 
 const Forml = () => {
 
-
-
-
     const navigate = useNavigate();
     const [regis, setRegister] = useState(false);
     console.log(auth)
+    const [loading,setLoading] = useState(false)
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -22,10 +20,15 @@ const Forml = () => {
         if (regis) {
             await createUserWithEmailAndPassword(auth, data.email, data.password)
         } else {
+            setLoading(true)
             try {
                 await signInWithEmailAndPassword(auth, data.email, data.password);
-                alert('Inicio de sesión exitoso');
-                navigate('/')
+                setTimeout(()=>{
+                    setLoading(false)
+                    //alert('Inicio de sesión exitoso');
+                    navigate('/')
+                }, 2000)
+                
             } catch (error) {
                 alert('Correo o constraseña Inválidos');
             }
@@ -68,7 +71,13 @@ const Forml = () => {
 
 
     return (
-
+        <>
+    {loading ?      <div className="flex flex-col items-center justify-center h-1/2 w-1/2 mt-4">
+                        <div className="animate-spin rounded-full h-14 w-14 border-t-4 border-red-500 border-solid"></div>
+                        <p className="mt-4 text-lg text-gray-700">Cargando...</p>
+                    </div>
+        : 
+        
         <form onSubmit={handleSubmit(functionAuth)} className=' mt-10 space-y-4 md:space-y-6'>
 
             <div>
@@ -107,9 +116,11 @@ const Forml = () => {
                         hover:bg-red-700'>{regis ? "Inicia sesión" : "Registrate"}</button>
                 </h4>
             </div>
+           
 
-        </form>
-
+        </form>}
+        
+        </>
     )
 }
 

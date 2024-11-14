@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Header from './Header'
 import { get, ref } from 'firebase/database';
-import { database } from '../firebase';
+import { db} from '../firebase';
 import { useNavigate } from 'react-router-dom';
+import { collection, getDoc, getDocs } from 'firebase/firestore';
 
 function TablaAdmin({ admin }) {
 
@@ -14,21 +15,18 @@ function TablaAdmin({ admin }) {
         const fetchData = async () => {
 
             try {
-                const dbRef = ref(database, "productos")
-                const snapShot = await get(dbRef)
+                const dbRef = collection(db, "productos")
+                const snapShot = await getDocs(dbRef)
+                
+                if (!snapShot.empty) {
+                    
+                    const temporaryArray = snapShot.docs.map((doc) => ({
+                      ...doc.data(),
+                      productId: doc.id, 
+                    }));
+                    
+                    setProductsArray(temporaryArray); 
 
-                if (snapShot.exists()) {
-
-                    const Data = snapShot.val()
-
-                    const temporaryArray = Object.keys(Data).map(fireId => {
-                        return {
-                            ...Data[fireId],
-                            productId: fireId
-
-                        }
-                    })
-                    setProductsArray(temporaryArray);
 
                 } else {
                     console.log("No hay datos")
@@ -42,7 +40,7 @@ function TablaAdmin({ admin }) {
         console.log(productArray)
 
         fetchData();
-    }, [database])
+    }, [db])
 
     return (
         <>

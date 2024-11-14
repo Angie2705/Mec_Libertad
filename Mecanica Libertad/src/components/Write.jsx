@@ -16,14 +16,27 @@ const Write = () => {
     imagen: [],
     precio: [],
     desc: [],
+    caract: []
   })
 
   const handleCaracteristicas = (e) => {
     e.preventDefault()
+    let errores = []
+    const regex = /^[a-zA-Z\s]*$/;
     if (caracteristica.trim()) {
-      setCaracteristicas([...caracteristicas, caracteristica]);
-      setCaracteristica('');
+      if (caracteristica.length >= 25) {
+        errores.push("La característica no puede superar los 25 caracteres")
+      } else if (!regex.test(caracteristica)){
+        errores.push("El nombre no puede tener caracteres especiales o números");
+        return  errores.length > 0 ? errores : ""
+      } else {
+        setCaracteristicas([...caracteristicas, caracteristica]);
+        setCaracteristica('');
+      }
+      
     }
+
+    console.log(caracteristicas)
   }
 
   const handleDeleteCaracteristicas = (e, index) => {
@@ -99,6 +112,7 @@ const Write = () => {
 
         //referencia a la ubicación de la bd donde se guardará
         const productsRef = collection(db, 'productos');
+        console.log(caracteristicas)
         
         
         //Se usa await para esperar a que push finalice antes de continuar
@@ -107,7 +121,7 @@ const Write = () => {
           precio: precioParse,
           descripcion: desc === "" ? descPredeterminada : desc,
           imagen: imageUrl,
-          caracteristicas: caracteristicas,
+          caracteristicas
         });
 
 
@@ -290,29 +304,42 @@ const Write = () => {
 
       <div className='my-2 md:my-6 md:flex justify-between flex-col items-center'>
         <label className='mr-3 font-semibold text-lg' htmlFor="">Características:</label>
-        <textarea className='border-2 border-gray-400 rounded-xl w-full md:w-3/4 p-2' type="text" rows={1} value={caracteristica} onChange={(e) => {
-          setCaracteristica(e.target.value)
-        }} />
+        
+        <div className="flex w-full md:w-3/4 mt-2">
+        <textarea
+            className="border-2 border-gray-400 rounded-xl w-full p-2 mr-2"
+            type="text"
+            rows={1}
+            value={caracteristica}
+            onChange={(e) => setCaracteristica(e.target.value)}
+        />
+        <button
+            className="bg-gray-600 text-sm hover:bg-black text-white text-base rounded-full w-28 h-10 flex-shrink-0"
+            onClick={handleCaracteristicas}
+        >
+            Añadir Caracteristica
+        </button>
+    </div>
       </div>
 
       <div className='flex justify-between mt-8'>
         <div>
           <ul className='mt-2'>
             {caracteristicas.map((carac, index) => (
-              <li key={index} className='border-b'>Característica {index + 1}: {carac}
+              <li key={index} className='flex items-center justify-between bg-gray-100 p-2 rounded m-2'>Característica {index + 1}: {carac}
 
-                <button onClick={(e) => handleDeleteCaracteristicas(e, index)}>X</button>
+                <button className='ml-4 rounded px-2 bg-red-500' onClick={(e) => handleDeleteCaracteristicas(e, index)}>x</button>
               </li>
 
             ))}
           </ul>
-          <button className='bg-gray-600 hover:bg-black text-white text-base rounded-full w-48 h-10' onClick={handleCaracteristicas}>Añadir Caracteristica</button>
+          
 
 
         </div>
 
 
-        <button onClick={handleSubmit} className='bg-red-600 text-white hover:bg-red-700 text-base rounded-full justify-end w-24 h-10'>Guardar</button>
+        <button onClick={handleSubmit} className='bg-red-600 text-white hover:bg-red-700 text-base rounded-full justify-end w-36 h-10'>Agregar Producto</button>
       </div>
 
     </form>

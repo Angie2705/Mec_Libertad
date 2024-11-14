@@ -96,7 +96,7 @@ const Header = ({user}) => {
             {
               user ? <> 
               <li key="PanelAdmin" className="hover:bg-gray-200 md:hover:bg-gray-200 px-6 md:px-4 py-2 rounded-md duration-150"> <a href={"/tablaadmin"}>Administrador</a> </li>
-              <button onClick={logOut} className="bg-red-200 rounded-lg p-2">Cerrar Sesión</button>
+              <button onClick={showModal} className="bg-red-200 rounded-lg p-2">Cerrar Sesión</button>
               </>
               : ""
 

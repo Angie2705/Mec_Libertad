@@ -8,6 +8,7 @@ const Loginad = () => {
             <div className='bg-white px-10 pb-14 pt-8 max-w-md rounded-3xl shadow-md flex flex-col items-center'>
                 <a href="/"><img className="w-full mb-6 shadow-md" src={assets.logo} alt="" /></a>
                 <h1 className='text-center text-3xl font-semibold'>Bienvenido/a</h1>
+
                 <Forml/>
             </div>
         </section>
