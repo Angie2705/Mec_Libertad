@@ -13,7 +13,6 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { app, auth } from './firebase'
 import { useState } from 'react'
 import PrivateRoute from './components/privateRoute'
-import Chatbot from './components/chatBot'
 import ChatWidget from './components/Chat'
 
 function App() {

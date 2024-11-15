@@ -4,7 +4,12 @@ import Title from './Title';
 function Nosotros() {
   return (
     <div id="nosotros">
-      <h2 className="w-full text-center text-3xl font-bold text-gray-800 p-2 md:p-6">Sobre Nosotros</h2>
+      <div className='text-center font-semibold text-3xl'>
+        <div className='inline-flex gap-2 items-center mb-3'>
+          <p className=' text-gray-600'>Sobre <span className=' text-red-700'>Nosotros</span></p>
+          <p className='w-8 sm:w-12 h-[1px] sm:h-[2px] bg-red-700'></p>
+        </div>
+      </div>
       <div className='grid grid-cols-1 lg:grid-cols-3 gap-x-4 lg:gap-y-0 gap-y-8 p-2'>
         <div className="flex flex-col items-center justify-center rounded-lg py-5 bg-red-800 mx-6 lg:ml-12 lg:mr-0 col-span-2">
 
@@ -22,7 +27,7 @@ function Nosotros() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-5 lg:gap-6 h-auto  bg-gray-200 rounded-lg p-6 pb-5 ml-6 mr-2 lg:ml-0 lg:mr-6">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-5 lg:gap-6 h-auto bg-gray-200 rounded-lg p-6 pb-5 ml-6 mr-2 lg:ml-0 lg:mr-6">
           {/* <img className="w-full h-full object-cover rounded-lg hover:scale-95 transition duration-1000 cursor-pointer" src={assets.Mecanica2} alt="" />
           <img className="w-full h-full object-cover rounded-lg hover:scale-95 transition duration-1000 cursor-pointer" src={assets.Mecanica3} alt="" /> */}
           <img className="w-full h-full object-cover rounded-lg hover:scale-95 transition duration-1000 cursor-pointer" src={assets.Mecanica4} alt="" />
@@ -35,6 +40,8 @@ function Nosotros() {
 
   /*
   h-[85vh] flex items-center justify-center bg-gray-100 mt-3 text-center
+
+  <h2 className="w-full text-center text-3xl font-bold text-gray-800 p-2 md:p-6">Sobre Nosotros</h2>
   
   */
 }
