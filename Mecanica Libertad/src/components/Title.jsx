@@ -3,29 +3,18 @@ import React from 'react'
 // eslint-disable-next-line react/prop-types
 const Title = ({text1, text2}) => {
   return (
-    <div className='mx-auto text-center -mb-3 '>
-      <div className='inline-flex gap-2 items-center mb-6'>
-              <p className='relative'>
-                  <svg width="200" height="30" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M 0 15 C 70 30, 150 0, 200 15" stroke="gray" strokeWidth="2" fill="none" />
-                  </svg>
-              </p>
+<div className="flex flex-col items-start max-w-fit mx-auto my-4 pb-6">
+  
+  <h1 className="text-2xl md:text-5xl pl-4 font-sans font-bold border-l-4 border-red-700 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.2)] dark:text-gray-300 relative tracking-[6px] text-gray-500">
+    {text1}
+    <span className="relative ml-2">
+       {text2}
 
-              <p className='text-red-600 text-4xl font-normal'>{text1} <span className='text-gray-600 font-meidum'>{text2}</span>
-              {/* <p className='w-20 h-[2px] bg-gray-700'></p>*/}
-              
-              </p>
-              
-              <p className='relative'>
-                <svg width="200" height="30" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M 0 15 C 70 0, 150 30, 200 15" stroke="gray" strokeWidth="2" fill="none" />
-                </svg>
-              </p>
-              
-              
-          </div>
-    </div>
-    
+      <div className="absolute right-0 top-full w-1/2 border-b-4 border-red-700 mt-1"></div>
+    </span>
+  </h1>
+</div>
+
     
   )
 }

@@ -9,6 +9,11 @@ npm install express @google-cloud/dialogflow cors
 npm install express cors body-parser
 
 npm install -g firebase-tools
+
+npm install react-slick --save
+npm install slick-carousel
+npm install @material-tailwind/react
+
 firebase login
 firebase init functions
 

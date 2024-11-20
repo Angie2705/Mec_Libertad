@@ -26,7 +26,7 @@ const ProductItem = ({id, image, name, price, desc, admin, navProduct}) => {
             
               {
                admin &&
-               <button className='btn bg-black rounded-xl text-white p-2' onClick={(e) => {
+               <button className='btn bg-black hover:bg-gray-500 rounded-xl text-white p-2' onClick={(e) => {
                 e.stopPropagation();
                 navProduct()
                }}> Actualizar Producto</button>

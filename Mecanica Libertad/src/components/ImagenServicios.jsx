@@ -9,17 +9,17 @@ const ImagenServicios = ({ img, titulo, descripcion }) => {
   
   return (
     <>
-      <figure className="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0 hover:scale-105  
-        hover:outline hover:outline-4 rounded-lg hover:outline-white hover:z-10 group">
+      <figure className="relative transition-all duration-300 cursor-pointer hover:scale-105  
+        hover:outline hover:outline-4 rounded-lg hover:outline-white hover:z-10 group ">
         
         <a>
           <img
-            className="w-full h-full filter blur-xs transition duration-500 ease-in-out group-hover:filter-none rounded-lg"
+            className="h-[200px] w-full object-cover filter transition duration-500 ease-in-out group-hover:filter-none rounded-lg"
             src={img} alt="image description"/>
         </a>
 
-        <figcaption className="absolute px-4 text-base md:text-lg text-white bottom-4 mt-4 flex flex-col items-center left-1/2 transform -translate-x-1/2">
-          <p>{titulo}</p>
+        <figcaption className="absolute text-base md:text-lg text-white bottom-4 mt-4 flex flex-col items-center left-1/2 transform -translate-x-1/2 ">
+          <p className='font-medium text-lg md:text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] hover:font-lg '>{titulo}</p>
           <button onClick={mostrarCard} className="mt-2 bg-slate-500 hover:bg-slate-700 text-white font-bold text-sm py-2 px-4 rounded-full 
             opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100">Ver más</button>
         </figcaption>

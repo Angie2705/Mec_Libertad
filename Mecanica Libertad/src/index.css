@@ -20,4 +20,29 @@
 }
 
 
+.slick-dots {
+    display: flex !important;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que las miniaturas se ajusten en varias filas si es necesario */
+    margin-top: 20px;
+  }
+  
+  .slick-dots li {
+    width: auto !important;
+  }
+@media (min-width: 768px) {
+  .slick-dots li img {
+    width: 10rem; /* Cambiar a 10rem en pantallas más grandes */
+    height: 5rem;
+  }
+}
 
+/* Estilo para pantallas grandes (por ejemplo, escritorios) */
+@media (min-width: 1024px) {
+  .slick-dots li img {
+    width: 12rem; /* Cambiar a 12rem en pantallas grandes */
+    height: 5rem;
+  }
+}
+  
+  

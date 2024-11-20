@@ -8,6 +8,8 @@ const Header = ({user}) => {
   const [showNavBar, setShowNavBar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [modal, setModal] = useState(false)
+
+  const [loading, setLoading] = useState(false)
     
   const showModal = () => setModal(true)
   const closeModal = () => setModal(false)
@@ -20,12 +22,21 @@ const Header = ({user}) => {
 
   const logOut = () =>{
     const auth = getAuth();
-    signOut(auth).then(()=>{
-      console.log("Log out successful")
-      setModal(false)
-    }).catch((e)=>{
-      console.log("Error: " + e)
-    })
+
+    setLoading(true)
+
+    setTimeout(()=>{
+      
+      signOut(auth).then(()=>{
+        console.log("Log out successful")
+        setModal(false)
+        setLoading(false)
+      }).catch((e)=>{
+        console.log("Error: " + e)
+      })
+    },2000)
+
+    
   }
 
   const controlNavBar = () => {
@@ -111,13 +122,20 @@ const Header = ({user}) => {
       {modal && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
                   <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full relative">
-                    <button
+
+                  {
+                        loading ? <div className="flex flex-col items-center justify-center h-full w-full mt-4 ">
+                        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-red-500 border-solid"></div>
+                        <p className="mt-4 text-lg text-gray-700">Cerrando sesión...</p>
+                         </div>  : <>
+                         <button
                       onClick={closeModal}
                       className="absolute top-0 right-3 text-gray-600 hover:text-gray-800 text-3xl p">
                       &times; 
                     </button>
                     <div className="grid grid-col-2 ">
                       <h2 className="text-2xl font-semibold mx-auto">¿Seguro de cerrar sesión?</h2>
+                      
                       <div className="flex justify-between pt-6"> 
                         <button
                           onClick={closeModal}
@@ -130,7 +148,9 @@ const Header = ({user}) => {
                           Cerrar Sesión
                         </button>
                       </div>
-                    </div>
+                    </div></>
+                      }
+                    
                 </div>
                 </div>
               )}

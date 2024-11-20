@@ -13,9 +13,10 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { app, auth } from './firebase'
 import { useState } from 'react'
 import PrivateRoute from './components/privateRoute'
-import Chatbot from './components/chatBot'
 import ChatWidget from './components/Chat'
-
+import FichaProductoAdmin from './components/FichaProductoAdmin'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 function App() {
   
   const [user, setUser] = useState(null)
@@ -33,14 +34,16 @@ function App() {
       {/* {user ? <adminPage useremail = {user.email}/> : <Loginad/>} */}
       <Routes>
         <Route path='/' element={<Home/>}></Route>
-        <Route path='/loginad' element={<Loginad/>}></Route>
+        <Route path='/loginad' element={<Loginad admin={user}/> } ></Route>
         <Route path='/tablaadmin' element={<PrivateRoute><TablaAdmin admin={user}/></PrivateRoute>}></Route>
         <Route path='/agregarprod' element={<PrivateRoute><Agregarprod/></PrivateRoute>}></Route>
         <Route path='/producto' element={<Producto admin={user}/>}></Route>
         <Route path='/read' element={<Read/>}></Route>
         <Route path='/update' element={<Update/>}></Route>
         <Route path='/updatewrite/:fireBaseId' element={<UpdateWrite/>} ></Route>
-        <Route path='/producto/:fireBaseId' element={<FichaProducto admin={user}/>}/>
+        <Route path='/producto/:fireBaseId' element={<FichaProducto/>}/>
+        <Route path='/productoAdmin/:fireBaseId' element={<FichaProductoAdmin admin={user}/>}/>
+
       </Routes>
       <ChatWidget/>
 

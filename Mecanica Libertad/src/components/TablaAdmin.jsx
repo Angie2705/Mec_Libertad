@@ -74,7 +74,7 @@ function TablaAdmin({ admin }) {
                                 <td className='border-2 border-black'>{item.precio}</td>
                                 <td className='border-2 border-black'>{item.descripcion}</td>
                                 <td className='w-20 rounded-r-full'>
-                                    <button onClick={() => navigate(`/producto`)}
+                                    <button onClick={() => navigate(`/productoAdmin/${item.productId}`)}
                                         className='px-3 py-3 m-2 text-md rounded-full bg-gray-600 text-white hover:bg-black'>Modificar</button>
                                 </td>
                             </tr>

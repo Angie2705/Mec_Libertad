@@ -6,35 +6,50 @@ import { useForm } from "react-hook-form";
 
 
 
+
 const Forml = () => {
 
     const navigate = useNavigate();
-    const [regis, setRegister] = useState(false);
+    //const [regis, setRegister] = useState(false);
     console.log(auth)
     const [loading,setLoading] = useState(false)
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const functionAuth = async (data) => {
-        
-        if (regis) {
-            await createUserWithEmailAndPassword(auth, data.email, data.password)
-        } else {
-            setLoading(true)
-            try {
-                await signInWithEmailAndPassword(auth, data.email, data.password);
-                setTimeout(()=>{
-                    setLoading(false)
-                    //alert('Inicio de sesión exitoso');
-                    navigate('/')
-                }, 2000)
-                
-            } catch (error) {
-                alert('Correo o constraseña Inválidos');
-            }
-        }
 
-        
+        setLoading(true)
+        try {
+            await signInWithEmailAndPassword(auth, data.email, data.password);
+
+            setTimeout(() =>{
+                setLoading(false)
+                navigate('/')
+                //alert('Inicio de sesión exitoso');
+                
+            }, 2000)
+            
+        } catch (error) {
+            alert('Correo o constraseña Inválidos');
+            setLoading(false)
+        }
+    
+        // if (regis) {
+        //     await createUserWithEmailAndPassword(auth, data.email, data.password)
+        // } else {
+        //     setLoading(true)
+        //     try {
+        //         await signInWithEmailAndPassword(auth, data.email, data.password);
+        //         setTimeout(()=>{
+        //             setLoading(false)
+        //             //alert('Inicio de sesión exitoso');
+        //             navigate('/')
+        //         }, 2000)
+                
+        //     } catch (error) {
+        //         alert('Correo o constraseña Inválidos');
+        //     }
+        // }  
     };
 
     
@@ -46,7 +61,7 @@ const Forml = () => {
         
 
         const logOut = () =>{
-            auth.signOut()
+            // auth.signOut()
         }
 
         window.addEventListener('beforeunload', logOut)
@@ -110,11 +125,11 @@ const Forml = () => {
 
             <div className='flex justify-center items-center'>
                 <button type="submit" className="px-4 py-2 text-base rounded-full bg-red-600 text-white 
-                    hover:bg-red-700">{regis ? "Registrate" : "Iniciar sesión"}</button>
-                <h4>{regis ? "Si ya tienes cuenta: " : "Si no tienes cuenta:"}
+                    hover:bg-red-700">Iniciar Sesión</button>
+                {/* <h4>{regis ? "Si ya tienes cuenta: " : "Si no tienes cuenta:"}
                     <button onClick={() => setRegister(!regis)} className='px-1 text-base rounded-full bg-gray-600 text-white 
                         hover:bg-red-700'>{regis ? "Inicia sesión" : "Registrate"}</button>
-                </h4>
+                </h4> */}
             </div>
            
 
