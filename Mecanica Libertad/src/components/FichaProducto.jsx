@@ -43,6 +43,7 @@ const FichaProducto = ({admin}) => {
         const productObject = snapShot.data()
         setImageFile(productObject.imagen)
         setProduct(productObject)
+        setCaracteristicas(productObject.caracteristicas)
 
         productObject.forEach((_, index)=>{
           setTimeout(()=>{
@@ -61,6 +62,8 @@ const FichaProducto = ({admin}) => {
 
 
     fetchData()
+
+    console.log("caracteristicas: "+product.caracteristicas)
   }, [fireBaseId])
 
 
