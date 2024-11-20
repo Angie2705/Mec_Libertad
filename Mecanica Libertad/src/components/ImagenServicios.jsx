@@ -28,14 +28,14 @@ const ImagenServicios = ({ img, titulo, descripcion }) => {
 
       {cardVisible && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full relative">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full relative" >
             <button
               onClick={cerrarCard}
               className="absolute top-0 right-3 text-gray-600 hover:text-gray-800 text-3xl p">
               &times; 
-            </button>
-            <h2 className="text-lg font-semibold">{titulo}</h2>
-            <p>{descripcion}</p>
+            </button> 
+            <h2 className="text-lg font-semibold pb-6">{titulo}</h2>
+            <p className='text-justify'>{descripcion}</p>
             <button
               onClick={cerrarCard}
               className="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">

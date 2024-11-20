@@ -35,6 +35,8 @@ function Nosotros() {
 
   /*
   h-[85vh] flex items-center justify-center bg-gray-100 mt-3 text-center
+
+  <h2 className="w-full text-center text-3xl font-bold text-gray-800 p-2 md:p-6">Sobre Nosotros</h2>
   
   */
 }

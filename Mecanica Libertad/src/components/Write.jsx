@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {  db, storage } from '../firebase';
+import { db, storage } from '../firebase';
 import { getDownloadURL, ref as storageRef, uploadBytes } from 'firebase/storage';
 import { getDatabase, ref, set, push } from 'firebase/database';
 import { collection, addDoc, getDocs, where, query} from 'firebase/firestore';
@@ -206,11 +206,10 @@ const Write = () => {
         console.error("Error al agregar producto: ", error);
       }
     }
-
-
   }
 
-
+  useEffect(() => {
+  })
 
   //VALIDACIÓN ERRORES
 
@@ -296,7 +295,6 @@ const Write = () => {
     }))
   }
 
-
   return (
     <>
         <form className='bg-white py-6 lg:py-7 px-6 lg:px-20 w-4/5 md:w-3/5 rounded-2xl shadow-md'>
@@ -304,6 +302,7 @@ const Write = () => {
         <button className='text-black border-2 border-gray-400 hover:bg-gray-400 text-lg rounded-full w-10 h-10'>
           <a href="/tablaadmin">X</a>
         </button>
+        
       </div>
 
       <h1 className='text-center text-3xl font-semibold mb-5 md:mb-12'>Nuevo Producto</h1>
@@ -372,9 +371,8 @@ const Write = () => {
         }
       </div>
 
-      <div className='my-2 md:my-6 md:flex justify-between flex-col items-center'>
-        <label className='mr-3 font-semibold text-lg' htmlFor="">Características:</label>
-        
+      <div className='my-2 md:my-6 md:flex flex-col items-center'>
+        <label className='mr-3 font-semibold text-lg text-' htmlFor="">Características:</label>
         <div className="flex w-full md:w-3/4 mt-2">
           <textarea
               className="border-2 border-gray-400 rounded-xl w-full p-2 mr-2"
@@ -420,11 +418,7 @@ const Write = () => {
 
             ))}
           </ul>
-          
-
-
         </div>
-
 
         <button onClick={handleSubmit} className='bg-red-600 text-white hover:bg-red-700 text-base rounded-full justify-end w-36 h-10'>Agregar Producto</button>
       </div>

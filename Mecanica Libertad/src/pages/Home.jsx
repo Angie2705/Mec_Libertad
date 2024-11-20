@@ -1,21 +1,16 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useEffect, useState} from 'react'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import Inicio from '../components/Inicio'
 import Nosotros from '../components/Nosotros'
 import Servicios from '../components/Servicios'
-
 import Ubicacion from '../components/Ubicacion'
 import Email from '../components/email'
-
 import Whatsapp from '../components/Whatsapp'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { app, auth } from '../firebase'
 import Footer from '../components/Footer'
 import Title from '../components/Title'
-
-
 
 const Home = () => {
   const [user, setUser] = useState(null)

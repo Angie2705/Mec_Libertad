@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Header from './Header'
-import { get, ref } from 'firebase/database';
-import { db} from '../firebase';
+import Header from './Header';
+import { db } from '../firebase';
 import { useNavigate } from 'react-router-dom';
-import { collection, getDoc, getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 
 function TablaAdmin({ admin }) {
 
@@ -17,15 +16,15 @@ function TablaAdmin({ admin }) {
             try {
                 const dbRef = collection(db, "productos")
                 const snapShot = await getDocs(dbRef)
-                
+
                 if (!snapShot.empty) {
-                    
+
                     const temporaryArray = snapShot.docs.map((doc) => ({
-                      ...doc.data(),
-                      productId: doc.id, 
+                        ...doc.data(),
+                        productId: doc.id,
                     }));
-                    
-                    setProductsArray(temporaryArray); 
+
+                    setProductsArray(temporaryArray);
 
 
                 } else {
@@ -72,7 +71,7 @@ function TablaAdmin({ admin }) {
                                 <td className='border-2 border-black'>{item.productId}</td>
                                 <td className='border-2 border-black'>{item.nombre}</td>
                                 <td className='border-2 border-black'>{item.precio}</td>
-                                <td className='border-2 border-black'>{item.descripcion}</td>
+                                <td className='border-2 border-black p-2 text-justify'>{item.descripcion}</td>
                                 <td className='w-20 rounded-r-full'>
                                     <button onClick={() => navigate(`/productoAdmin/${item.productId}`)}
                                         className='px-3 py-3 m-2 text-md rounded-full bg-gray-600 text-white hover:bg-black'>Modificar</button>
