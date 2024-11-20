@@ -40,11 +40,8 @@ const FichaProductoAdmin = ({admin}) => {
         ...e,
         imagen: errores
       }))
-
-
     }
 };
-
 
   useEffect(() => {
 
@@ -52,7 +49,6 @@ const FichaProductoAdmin = ({admin}) => {
       
       setLoading(true)
       const dbRef = doc(db, 'productos/' + fireBaseId);
-
 
       const snapShot = await getDoc(dbRef);
 
@@ -81,11 +77,7 @@ const FichaProductoAdmin = ({admin}) => {
       }
     }
 
-
-
-
     fetchData()
-
 
   }, [fireBaseId])
 
@@ -117,7 +109,6 @@ const FichaProductoAdmin = ({admin}) => {
         caract: errorCaract ? [errorCaract] : [],
       })
       
-    
     } else{
       try {
 
@@ -218,13 +209,9 @@ const FichaProductoAdmin = ({admin}) => {
   const validateCaract = (caracteristica) =>{
     let errores = []
     const regex = /^[a-zA-Z\s]*$/;
-    if (caracteristica.length >= 25) {
-      errores.push("La característica no puede superar los 25 caracteres")
-    } 
-    if (!regex.test(caracteristica)){
-      errores.push("La caracteristica no puede tener caracteres especiales o números");
-    } 
-
+    if (caracteristica.length >= 100) {
+      errores.push("La característica no puede superar los 100 caracteres")
+    }
     return errores.length > 0 ? errores : null;
   }
   
@@ -399,7 +386,7 @@ const FichaProductoAdmin = ({admin}) => {
                             onChange={handleCaracOnChange}
                         />
                         <button
-                            className="bg-gray-600 text-sm hover:bg-black text-white text-base rounded-full w-28 h-10 flex-shrink-0"
+                            className="bg-gray-600 text-sm hover:bg-black text-white rounded-full w-28 h-10 flex-shrink-0"
                             onClick={handleCaracteristicas}
                         >
                             Añadir Caracteristica

@@ -33,7 +33,7 @@ function Inicio() {
   };
 
   return (
-    <div id="inicio" className="w-full px-2 py-8 mt-6 pb-32 md:pb-22">
+    <div id="inicio" className="w-full px-6 py-8 pb-32 md:pb-22">
       <Slider {...settings}>
         {imageData.map((data) => (
           <div key={data.id}>

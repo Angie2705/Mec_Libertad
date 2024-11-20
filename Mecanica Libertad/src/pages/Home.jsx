@@ -30,18 +30,16 @@ const Home = () => {
     <>
       <Header user={user} />
       <Sidebar />
-      <div className='pt-16 bg-gray-100' >
-        <main className='min-h-contain '>
+      <div className='pt-16 bg-gray-100'>
+        <main className='min-h-contain'>
           <Inicio />
           <Nosotros />
           <Servicios />
           <section id="contacto" className="text-center bg-gray-100 px-16 lg:px-12 pb-10 pt-5">
           <div className="flex flex-col items-start max-w-fit mx-auto my-4 pb-6">
-  
-            <h1 className="text-2xl md:text-5xl pl-4 font-sans font-bold border-l-4 border-red-700 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.2)] dark:text-gray-300 relative tracking-[6px] text-gray-500">
+            <h1 className="text-2xl md:text-5xl pl-4 font-sans font-bold border-l-4 border-red-700 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.2)] relative tracking-[6px] text-gray-500">
                 Contáctanos
                 <div className="absolute right-0 top-full w-1/4 border-b-4 border-red-700 mt-1"></div>
-
             </h1>
           </div>
             <div className='flex flex-col lg:flex-row gap-x-10 gap-y-10 lg:gap-y-0'>
