@@ -3,7 +3,7 @@ import { assets } from '../assets/assets';
 import Title from './Title';
 function Nosotros() {
   return (
-    <div className='md:py-14' id="nosotros">
+    <div className='md:py-10' id="nosotros">
       <Title text1="Sobre" text2="Nosotros"/>
       <div className='grid grid-cols-1 lg:grid-cols-3 gap-x-4 lg:gap-y-0 gap-y-8 p-2 bg-gray-100 pt-8 '>
         <div className="flex flex-col items-center justify-center rounded-lg py-5 mx-6 lg:ml-12 lg:mr-0 col-span-2 ">

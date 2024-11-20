@@ -5,8 +5,7 @@ import { assets } from "../assets/assets";
 const imageData = [
   { id: 1, img: assets.Mecanica1 },
   { id: 2, img: assets.Mecanica2 },
-  { id: 3, img: assets.Mecanica3 },
-  
+  { id: 3, img: assets.Mecanica7 },
 ];
 
 function Inicio() {

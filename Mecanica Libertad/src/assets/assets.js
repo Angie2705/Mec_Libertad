@@ -5,6 +5,7 @@ import Mecanica2 from './Mecanica2.jpg'
 import Mecanica3 from './Mecanica3.jpg'
 import Mecanica4 from './Mecanica4.jpg'
 import Mecanica5 from './Mecanica5.jpg'
+import Mecanica6 from './Mecanica6.jpg'
 import Mecanica7 from './Mecanica7.jpg'
 
 import service1 from './service1.jpg'
@@ -31,6 +32,7 @@ export const assets = {
     Mecanica3,
     Mecanica4,
     Mecanica5,
+    Mecanica6,
     Mecanica7,
     service1,
     service2,

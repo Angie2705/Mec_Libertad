@@ -114,7 +114,6 @@ const FichaProductoAdmin = ({admin}) => {
 
         let imageUrls = [];
         
-        
         if (imageFile.length > 0) {
 
           for(const img of imageFile){
@@ -211,7 +210,8 @@ const FichaProductoAdmin = ({admin}) => {
     const regex = /^[a-zA-Z\s]*$/;
     if (caracteristica.length >= 100) {
       errores.push("La característica no puede superar los 100 caracteres")
-    }
+    } 
+
     return errores.length > 0 ? errores : null;
   }
   
