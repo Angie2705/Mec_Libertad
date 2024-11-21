@@ -167,9 +167,9 @@ const FichaProductoAdmin = ({admin}) => {
     if (nombre.length >= 50) {
         errores.push("El nombre no puede ser mayor a 50 caracteres");
     }
-    const regex = /^[a-zA-Z\s]*$/;
+    const regex = /^[A-Za-z0-9\s]+$/g;
     if (!regex.test(nombre)) {
-        errores.push("El nombre no puede tener caracteres especiales o números");
+        errores.push("El nombre no puede tener caracteres especiales");
     }
 
     
@@ -189,8 +189,8 @@ const FichaProductoAdmin = ({admin}) => {
 
   const validateDesc = (desc) =>{
 
-    if (desc.length >= 200) {
-      return "La descripción no puede superar los 200 caracteres"
+    if (desc.length >= 400) {
+      return "La descripción no puede superar los 400 caracteres"
     }
 
     return null;
@@ -350,7 +350,7 @@ const FichaProductoAdmin = ({admin}) => {
                     )} 
 
                     <label htmlFor="" className='mt-4 mb-1 font-medium text-lg'>Descripción:</label>
-                    <textarea className='h-screen text-md bg-gray-700 text-white rounded-xl w-full lg:w-11/12 lg:h-60 p-3' 
+                    <textarea className='h-screen text-md text-justify bg-gray-700 text-white rounded-xl w-full lg:w-11/12 lg:h-60 p-3' 
                       wrap="hard" name="" value={desc} onChange={handleDesc}></textarea>
                      {/*Manejo Errores Descripción */}
                      {error.desc.length > 0 && (
