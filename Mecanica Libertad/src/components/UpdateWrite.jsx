@@ -1,4 +1,4 @@
-import { push, ref, set, get } from 'firebase/database';
+import { ref, set, get } from 'firebase/database';
 import React, { useState, useEffect } from 'react'
 import { db } from '../firebase';
 import { useParams } from 'react-router-dom';
