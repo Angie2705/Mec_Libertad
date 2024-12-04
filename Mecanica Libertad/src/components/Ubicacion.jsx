@@ -19,9 +19,9 @@ function Contacto() {
 
     <div className="rounded-lg p-6 bg-white w-full">
       <h2 className="text-black text-center text-2xl font-semibold mb-5">Ubicación</h2>
-      <button onClick={() => di1()} id="dr1" className='bg-gray-600 text-white focus:outline-none 
+      <button onClick={() => di1()} id="dr1" className='bg-gray-600 text-white text-sm focus:outline-none 
         focus:ring focus:ring-red-600 w-full h-10 mb-2 rounded-lg'>Teniente Mery #1962, Conchalí Santiago de Chile.</button>
-      <button onClick={() => di2()} id="dr2" className='bg-gray-600 text-white focus:outline-none 
+      <button onClick={() => di2()} id="dr2" className='bg-gray-600 text-white text-sm focus:outline-none 
         focus:ring focus:ring-red-600 w-full h-10 mb-2 rounded-lg'>SIGMA S.A - Calle 9 425, interior 12, Antofagasta</button>
       <iframe src={`${direction}`} className="w-full h-96 mt-4 border-4 shadow-lg" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe> 
     </div>

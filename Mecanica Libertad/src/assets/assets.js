@@ -1,10 +1,10 @@
 import logo from './MecanicaLibertad.png'
 
-import Mecanica1 from './Mecanica1.jpg'
+import Mecanica1 from './Mecanica1.jpeg'
 import Mecanica2 from './Mecanica2.jpg'
 import Mecanica3 from './Mecanica3.jpg'
-import Mecanica4 from './Mecanica4.jpg'
-import Mecanica5 from './Mecanica5.jpg'
+import Mecanica4 from './Mecanica4.jpeg'
+import Mecanica5 from './Mecanica5.jpeg'
 import Mecanica6 from './Mecanica6.jpeg'
 import Mecanica7 from './Mecanica7.jpg'
 
