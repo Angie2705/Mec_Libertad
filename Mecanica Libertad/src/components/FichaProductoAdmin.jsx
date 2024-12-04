@@ -96,7 +96,7 @@ const FichaProductoAdmin = ({admin}) => {
       if (isDuplicate) {
         setError((error) => ({
           ...error,
-          nombre: [...error.nombre, "El nombre ya existe"]
+          nombre: ["El nombre ya existe"]
         }))
         return
       }
@@ -199,8 +199,8 @@ const FichaProductoAdmin = ({admin}) => {
 
   const validateDesc = (desc) =>{
 
-    if (desc.length >= 200) {
-      return "La descripción no puede superar los 200 caracteres"
+    if (desc.length >= 500) {
+      return "La descripción no puede superar los 500 caracteres"
     }
 
     return null;
@@ -217,13 +217,13 @@ const FichaProductoAdmin = ({admin}) => {
 
   const validateCaract = (caracteristica) =>{
     let errores = []
-    const regex = /^[a-zA-Z\s]*$/;
+    // const regex = /^[a-zA-Z\s]*$/;
     if (caracteristica.length >= 25) {
       errores.push("La característica no puede superar los 25 caracteres")
     } 
-    if (!regex.test(caracteristica)){
-      errores.push("La caracteristica no puede tener caracteres especiales o números");
-    } 
+    // if (!regex.test(caracteristica)){
+    //   errores.push("La caracteristica no puede tener caracteres especiales o números");
+    // } 
 
     return errores.length > 0 ? errores : null;
   }
@@ -254,7 +254,7 @@ const FichaProductoAdmin = ({admin}) => {
 
     setError((e)=>({
       ...e,
-      nombre: error ? [error] : []
+      nombre: error ? [error] : ["El nombre tiene el formato correcto"]
       
     }))
   }
@@ -267,7 +267,7 @@ const FichaProductoAdmin = ({admin}) => {
 
     setError((e)=>({
       ...e,
-      precio: error ? [error] : []
+      precio: error ? [error] : ["El precio tiene el formato correcto"]
     }))
 
 
@@ -308,7 +308,7 @@ const FichaProductoAdmin = ({admin}) => {
   }
   return product ? (
     <>
-      <Header />
+      <Header user={admin}/>
       <div className='mt-24 px-10 md:px-6 transition-opacity ease-in duration-500 opacity-100'>
         <div className='flex gap-10 flex-col md:flex-row lg:mx-20 mb-5'>
           <h1 className='md:hidden font-medium text-center text-3xl'>{product.nombre}</h1>
@@ -343,7 +343,7 @@ const FichaProductoAdmin = ({admin}) => {
                        value={name} onChange={handleName}/>
                     {/*Manejo Errores Nombre */}
                     {error.nombre.length > 0 && (
-                      <ul className='list-disc list-inside text-red-500 text-sm mt-2'>
+                      <ul className={`list-disc list-inside ${error.nombre == "El nombre tiene el formato correcto" ? "text-green-500" : "text-red-500"}  text-sm mt-2`}>
                         {error.nombre.flat().map((err,index)=>(
                           <li key={index}>{err}</li>
                         ))}

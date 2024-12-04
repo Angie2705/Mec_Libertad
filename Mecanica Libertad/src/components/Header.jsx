@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { assets } from "../assets/assets";
 import { Link, NavLink } from 'react-router-dom'
 import { getAuth, signOut } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../firebase";
 
 const Header = ({user}) => {
 
@@ -14,20 +16,29 @@ const Header = ({user}) => {
   const showModal = () => setModal(true)
   const closeModal = () => setModal(false)
 
-  console.log("header: "+ user)
+  //console.log("header: "+ user)
 
   const changeRoute = () =>{
     context.router.push("/")
   }
 
-  const logOut = () =>{
+  const logOut = async () =>{
     const auth = getAuth();
 
-    setLoading(true)
+    const currentUser = auth.currentUser;
 
-    setTimeout(()=>{
+   
+
+    if (currentUser) {
+      const userRef = doc(db, "users/", currentUser.email)
+
+      await setDoc(userRef, {activeToken: null}, {merge: true})
+      
+      setLoading(true)
+      setTimeout(()=>{
       
       signOut(auth).then(()=>{
+        localStorage.removeItem("authToken")
         console.log("Log out successful")
         setModal(false)
         setLoading(false)
@@ -35,7 +46,10 @@ const Header = ({user}) => {
         console.log("Error: " + e)
       })
     },2000)
+    }
 
+
+    
     
   }
 
@@ -53,6 +67,7 @@ const Header = ({user}) => {
 
 
   useEffect(() => {
+ 
 
     if (typeof window != 'undefined') {
       window.addEventListener('scroll', controlNavBar)
@@ -71,7 +86,8 @@ const Header = ({user}) => {
     { name: "Nosotros", link: "/#nosotros" },
     { name: "Servicios", link: "/#servicios" },
     { name: "Productos", link: "/producto" },
-    { name: "Contactos", link: "/#contacto" }
+    { name: "Contactos", link: "/#contacto" },
+    {name: "Cotización", link: "/cotizacion"}
   ]
 
   let [open, setOpen] = useState(false);

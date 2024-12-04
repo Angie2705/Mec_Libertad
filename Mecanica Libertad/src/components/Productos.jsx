@@ -70,36 +70,34 @@ const Productos = ({ admin }) => {
                     <p className='w-8 sm:w-12 h-[1px] sm:h-[2px] bg-red-700'></p>
                 </div>
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-    {productArray.map((key, index) => (
-        <div
-            key={key.productId || index} // Aquí debe estar el key único para cada iteración
-            className="cursor-pointer"
-        >
-            {loading[index] ? (
-                <div className="flex flex-col items-center justify-center h-full w-full mt-4 py-32">
-                    <div className="animate-spin rounded-full h-24 w-24 border-t-4 border-red-500 border-solid"></div>
-                    <p className="mt-4 text-lg text-gray-700">Cargando...</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    {productArray.map((key, index) => (
+                        <div
+                            key={key.productId || index} 
+                            className="cursor-pointer"
+                        >
+                            {loading[index] ? (
+                                <div className="flex flex-col items-center justify-center h-full w-full mt-4 py-32">
+                                    <div className="animate-spin rounded-full h-24 w-24 border-t-4 border-red-500 border-solid"></div>
+                                    <p className="mt-4 text-lg text-gray-700">Cargando...</p>
+                                </div>
+                            ) : (
+                                <div onClick={() => navigate(`/producto/${key.productId}`)}>
+                                    <ProductItem
+                                        image={key.imagen}
+                                        name={key.nombre}
+                                        price={key.precio}
+                                        desc={key.desc}
+                                        admin={admin}
+                                        navProduct={() =>
+                                            navigate(`/productoAdmin/${key.productId}`)
+                                        }
+                                    />
+                                </div>
+                            )}
+                        </div>
+                        ))}
                 </div>
-            ) : (
-                <div onClick={() => navigate(`/producto/${key.productId}`)}>
-                    <ProductItem
-                        image={key.imagen}
-                        name={key.nombre}
-                        price={key.precio}
-                        desc={key.desc}
-                        admin={admin}
-                        navProduct={() =>
-                            navigate(`/productoAdmin/${key.productId}`)
-                        }
-                    />
-                </div>
-            )}
-        </div>
-    ))}
-</div>
-
         </section>
 
     )

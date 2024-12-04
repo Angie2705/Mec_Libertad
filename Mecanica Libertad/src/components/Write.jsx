@@ -92,6 +92,10 @@ const Write = () => {
 
     if (file) {
       setImageFile(file); // Guardamos el archivo de imagen
+      setError((e) => ({
+        ...e,
+        imagen: ["Imagen agregada correctamente"]
+      }))
     } else {
       let errores = ["La imagen es obligatoria"]
       setError((e) => ({
@@ -237,15 +241,15 @@ const Write = () => {
     }
     const regex = /^\d+$/
     if (!regex.test(precio)) {
-      return "El precio solo deben ser valores numéricos"
+      return "El precio solo deben ser valores numéricos enteros"
     }
     return null;
   }
 
   const validateDesc = (desc) => {
 
-    if (desc.length >= 300) {
-      return "La descripción no puede superar los 200 caracteres"
+    if (desc.length >= 500) {
+      return "La descripción no puede superar los 500 caracteres"
     }
     return null;
   }
@@ -268,7 +272,7 @@ const Write = () => {
 
     setError((e) => ({
       ...e,
-      nombre: error ? [error] : []
+      nombre: error ? [error] : ["El nombre tiene el formato correcto"]
     }))
   }
 
@@ -280,7 +284,7 @@ const Write = () => {
 
     setError((e) => ({
       ...e,
-      precio: error ? [error] : []
+      precio: error ? [error] : ["El precio tiene el formato correcto"]
     }))
   }
 
@@ -313,7 +317,7 @@ const Write = () => {
 
         {/*Manejo Errores Nombre */}
         {error.nombre.length > 0 && (
-          <ul className='list-disc list-inside text-red-500 text-sm mt-2'>
+          <ul className={`list-disc list-inside ${error.nombre == "El nombre tiene el formato correcto" ? "text-green-500" : "text-red-500"}  text-sm mt-2`}>
             {error.nombre.flat().map((err, index) => (
               <li key={index}>{err}</li>
             ))}
@@ -328,7 +332,7 @@ const Write = () => {
         {/*Manejo Errores Imagen */}
         {
           error.imagen.length > 0 && (
-            <ul className='list-disc list-inside text-red-500 text-sm ml-2 mt-2'>
+            <ul className={`list-disc list-inside ${error.imagen == "Imagen agregada correctamente" ? "text-green-500": "text-red-500"}  text-sm ml-2 mt-2`}>
               {error.imagen.map((error, index) => (
                 <li key={index}>{error}</li>
               ))}
@@ -343,7 +347,7 @@ const Write = () => {
         {/*Manejo Errores Precio */}
         {
           error.precio.length > 0 && (
-            <ul className='list-disc list-inside text-red-500 text-sm mt-2'>
+            <ul className={`list-disc list-inside ${error.precio == "El precio tiene el formato correcto" ? "text-green-500" : "text-red-500"}  text-sm mt-2`}>
               {
                 error.precio.map((err, index) => (
                   <li key={index}>{err}</li>

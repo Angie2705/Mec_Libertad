@@ -3,6 +3,7 @@ import Header from './Header';
 import { db } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
 function TablaAdmin({ admin }) {
 

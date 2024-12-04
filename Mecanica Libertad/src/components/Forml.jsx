@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { app, auth } from '../firebase';
+import { app, auth, db } from '../firebase';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 
 
@@ -11,8 +12,10 @@ const Forml = () => {
 
     const navigate = useNavigate();
     //const [regis, setRegister] = useState(false);
-    console.log(auth)
+    // console.log(auth)
     const [loading,setLoading] = useState(false)
+    let [alerta, setAlerta] = useState(false)
+    let [alerta2, setAlerta2] = useState(false)
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -20,17 +23,50 @@ const Forml = () => {
 
         setLoading(true)
         try {
-            await signInWithEmailAndPassword(auth, data.email, data.password);
+            
 
+            const userRef = doc(db, "users", data.email)
+            const userDoc = await getDoc(userRef)
+            const {activeToken} = userDoc.data()
+            if (activeToken != null && userDoc.exists()) {
+                console.log("exists")
+                if (activeToken) {
+                    setAlerta(true)
+                    setTimeout(()=>{
+                    setAlerta(false)
+                    console.log("3 segundos")
+                    }, 8000)
+                    setLoading(false)
+                    return
+                }
+            }
+
+            const userCredential = await signInWithEmailAndPassword(auth, data.email, data.password);
+            const user = userCredential.user;
+
+            console.log(userDoc.data)
+
+            
+
+            const token = await user.getIdToken() 
+
+            await setDoc(userRef, {activeToken: token}, {merge: true})
+
+            
+
+            console.log("token usuario: " + token)
+            localStorage.setItem("authToken", token)
+            
             setTimeout(() =>{
                 setLoading(false)
                 navigate('/')
-                //alert('Inicio de sesión exitoso');
+                
                 
             }, 2000)
             
         } catch (error) {
-            alert('Correo o constraseña Inválidos');
+            alert('Correo o constraseña Inválidos', error);
+            console.log(error)
             setLoading(false)
         }
     
@@ -134,6 +170,27 @@ const Forml = () => {
            
 
         </form>}
+
+            {
+        alerta && (
+            <div
+            className="fixed top-4 right-4 p-4 text-sm text-blue-800 rounded-lg bg-blue-50 shadow-lg transition-transform transform translate-x-full animate-slide-in-out"
+            role="alert"
+            >
+            <span className="font-medium">Ya existe una sesión activa con este usuario</span> Prueba a iniciar sesión con otro usuario
+            </div>
+        )
+        }
+        {
+        alerta2 && (
+            <div
+            className="fixed top-4 right-4 p-4 text-sm text-blue-800 rounded-lg bg-blue-50 shadow-lg transition-transform transform translate-x-full animate-slide-in-out"
+            role="alert"
+            >
+            <span className="font-medium">Inicio de sesión exitoso</span>
+            </div>
+        )
+        }
         
         </>
     )

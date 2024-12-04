@@ -17,7 +17,7 @@ const PrivateRoute = ({children}) => {
         return () => unsubscribe();
     }, []);
 
-    if(loading) return <div>Cargando...</div>
+    if(loading) return <div></div>
 
     return user ? children : <Navigate to="/loginad"/>;
   

@@ -17,6 +17,7 @@ import ChatWidget from './components/Chat'
 import FichaProductoAdmin from './components/FichaProductoAdmin'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Cotizacion from './components/Cotizacion'
 function App() {
   
   const [user, setUser] = useState(null)
@@ -41,8 +42,10 @@ function App() {
         <Route path='/read' element={<Read/>}></Route>
         <Route path='/update' element={<Update/>}></Route>
         <Route path='/updatewrite/:fireBaseId' element={<UpdateWrite/>} ></Route>
-        <Route path='/producto/:fireBaseId' element={<FichaProducto/>}/>
+        <Route path='/producto/:fireBaseId' element={<FichaProducto admin={user}/>}/>
         <Route path='/productoAdmin/:fireBaseId' element={<FichaProductoAdmin admin={user}/>}/>
+
+        <Route path='/cotizacion' element={<Cotizacion admin={user}/>}></Route>
 
       </Routes>
       <ChatWidget/>

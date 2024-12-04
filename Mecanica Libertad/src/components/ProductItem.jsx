@@ -21,7 +21,7 @@ const ProductItem = ({id, image, name, price, desc, admin, navProduct}) => {
               <h3 className="text-xl text-gray-900">{name}</h3>
               <p className="text-lg text-gray-600 mt-1">{desc}</p>
               <div className="mt-4 flex justify-between items-center">
-                <span className="text-md font-bold text-red-700">Precio Aproximado: ${price}</span>
+                <span className="text-md font-bold text-red-700">Precio Aproximado: ${price.toLocaleString()}</span>
               </div>
             
               {
