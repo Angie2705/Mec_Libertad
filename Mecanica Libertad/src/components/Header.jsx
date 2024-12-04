@@ -112,7 +112,7 @@ const Header = ({user}) => {
           
           <ul className={`md:flex w-full absolute md:static justify-center text-center md:gap-x-8 md:z-auto z-[-1]
             bg-white text-gray-900 font-semibold text-sm md:text-base px-20 py-3 md:p-0 transition-all duration-500 ease-in
-              ${open ? 'top-20 opacity-100' : 'top-[-140px]'} md:opacity-100 opacity-0`}>
+              ${open ? 'top-16 opacity-100' : 'top-[-140px]'} md:opacity-100 opacity-0`}>
             {
               Links.map((Link) => (
                 <li key={Link.name} className="hover:bg-gray-200 md:hover:bg-gray-200 px-6 md:px-4 py-2 rounded-md duration-150"> <a href={Link.link}>{Link.name}</a> </li>

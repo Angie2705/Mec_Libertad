@@ -4,9 +4,8 @@ import { assets } from "../assets/assets";
 
 const imageData = [
   { id: 1, img: assets.Mecanica1 },
-  { id: 2, img: assets.Mecanica2 },
-  { id: 3, img: assets.Mecanica3 },
-  
+  { id: 2, img: assets.Mecanica6 },
+  { id: 3, img: assets.Mecanica7 },
 ];
 
 function Inicio() {
@@ -33,7 +32,7 @@ function Inicio() {
   };
 
   return (
-    <div id="inicio" className="w-full px-2 py-8 mt-6 pb-32 md:pb-22">
+    <div id="inicio" className="w-full px-6 py-8 pb-32 md:pb-22">
       <Slider {...settings}>
         {imageData.map((data) => (
           <div key={data.id}>

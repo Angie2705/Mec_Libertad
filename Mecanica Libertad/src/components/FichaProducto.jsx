@@ -1,10 +1,7 @@
-/* eslint-disable no-unused-vars */
-import { get, ref, set } from 'firebase/database';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { db, storage } from '../firebase';
 import Header from './Header';
-import { getDownloadURL, ref as storageRef, uploadBytes } from 'firebase/storage';
 import { doc, getDoc } from 'firebase/firestore';
 
 const FichaProducto = ({admin}) => {
@@ -28,9 +25,6 @@ const FichaProducto = ({admin}) => {
   const [seeInfo, setSeeInfo] = useState(false)
 
   const navigate = useNavigate();
-
-
-
 
   useEffect(() => {
 
@@ -69,7 +63,6 @@ const FichaProducto = ({admin}) => {
     //localStorage.clear()
     
     
-
 
 
     fetchData()
