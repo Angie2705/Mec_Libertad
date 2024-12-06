@@ -1,4 +1,4 @@
-import {Routes, Route, Link} from 'react-router-dom'
+import {Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
 import Producto from './pages/Producto'
 import Loginad from './pages/Loginad'
@@ -8,8 +8,9 @@ import Update from './components/Update'
 import UpdateWrite from './components/UpdateWrite'
 import FichaProducto from './components/FichaProducto'
 import TablaAdmin from './components/TablaAdmin'
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { app, auth } from './firebase'
+
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebase'
 import { useState } from 'react'
 import PrivateRoute from './components/privateRoute'
 import FichaProductoAdmin from './components/FichaProductoAdmin'
@@ -31,7 +32,6 @@ function App() {
 
   return (
     <>
-      {/* {user ? <adminPage useremail = {user.email}/> : <Loginad/>} */}
       <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/loginad' element={<Loginad admin={user}/> } ></Route>
@@ -43,18 +43,9 @@ function App() {
         <Route path='/updatewrite/:fireBaseId' element={<UpdateWrite/>} ></Route>
         <Route path='/producto/:fireBaseId' element={<FichaProducto admin={user}/>}/>
         <Route path='/productoAdmin/:fireBaseId' element={<FichaProductoAdmin admin={user}/>}/>
-
         <Route path='/cotizacion' element={<Cotizacion admin={user}/>}></Route>
-
       </Routes>
-
-
-
     </>
-    
-    
-
-
   )
 }
 

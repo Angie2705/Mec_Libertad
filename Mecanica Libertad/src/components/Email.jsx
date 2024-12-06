@@ -2,15 +2,14 @@ import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { useForm } from "react-hook-form";
 
-
 const Email = () => {
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    
-    const form = useRef();
 
+    const form = useRef();
+    //Conexión con Servicio y Plantilla de correo electronico.
     const sendEmail = () => {
-        
+
         emailjs
             .sendForm('service_iks3wy7', 'template_a42hcv7', form.current, {
                 publicKey: 'kMgjA03zPI2Dp4xxD',
@@ -34,11 +33,12 @@ const Email = () => {
             <p className="text-md text-black text-center mt-5 mb-10 word-space" style={{ wordSpacing: '8px' }}>
                 Contactanos por Email a través del siguiente formulario.
             </p>
-
+            {/*Formulario de Correo Electrónico*/}
             <form ref={form} onSubmit={handleSubmit(sendEmail)} className="w-full flex flex-col items-center">
+                {/*Nombre de Usuario*/}
                 <div className='flex flex-col items-center mb-4 md:mb-5 w-full'>
                     <input type="text" name="user_name" placeholder="Nombre y Apellido"
-                        className="w-10/12 md:w-4/5 p-2 border-2 border-gray-400 rounded-xl" 
+                        className="w-10/12 md:w-4/5 p-2 border-2 border-gray-400 rounded-xl"
                         {...register("user_name", {
                             required: {
                                 value: true,
@@ -48,10 +48,11 @@ const Email = () => {
                                 value: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+(?:\s+[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+){1,5}(?:\s+[-\sa-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+)?$/i,
                                 message: "Escriba su primer nombre y primer apellido"
                             }
-                        })}/>
+                        })} />
                     {errors.user_name && <span className='text-red-600 text-sm'>{errors.user_name.message}</span>}
                 </div>
-
+                
+                {/*Correo de Usuario*/}
                 <div className='flex flex-col items-center mb-4 md:mb-5 w-full'>
                     <input type="email" name="user_email" placeholder="Correo Electrónico"
                         className="w-10/12 md:w-4/5 p-2 border-2 border-gray-400 rounded-xl"
@@ -67,7 +68,8 @@ const Email = () => {
                         })} />
                     {errors.user_email && <span className='text-red-600 text-sm'>{errors.user_email.message}</span>}
                 </div>
-
+                
+                {/*Mensaje de Usuario*/}
                 <div className='flex flex-col items-center mb-4 md:mb-5 w-full'>
                     <textarea name="messagee" placeholder="Mensaje"
                         className="w-10/12 md:w-4/5 h-56 p-2 border-2 border-gray-400 rounded-xl" {...register("messagee", {
@@ -76,12 +78,12 @@ const Email = () => {
                                 message: "El campo es requerido"
                             },
                             minLength: {
-                                value:30,
+                                value: 30,
                                 message: "El mensaje no es válido"
                             }
                         })} />
                     {errors.messagee && <span className='text-red-600 text-sm'>{errors.messagee.message}</span>}
-                    
+
                 </div>
 
                 <button type="submit" value="Send" className=" w-28 text-lg p-2 mb-3 bg-red-600 

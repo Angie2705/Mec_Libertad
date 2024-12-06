@@ -1,10 +1,11 @@
 import React from 'react';
 import { assets } from '../assets/assets';
 import Title from './Title';
+
 function Nosotros() {
   return (
     <div className='md:py-10' id="nosotros">
-      <Title text1="Sobre" text2="Nosotros"/>
+      <Title text1="Sobre" text2="Nosotros" />
       <div className='grid grid-cols-1 lg:grid-cols-3 gap-x-4 lg:gap-y-0 gap-y-8 p-2 bg-gray-100 pt-8 '>
         <div className="flex flex-col items-center justify-center rounded-lg py-5 mx-6 lg:ml-12 lg:mr-0 col-span-2 ">
 
@@ -23,22 +24,12 @@ function Nosotros() {
         </div>
 
         <div className="bg-gray-200 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-5 lg:gap-6 h-auto  rounded-lg p-6 pb-5 ml-6 mr-2 lg:ml-0 lg:mr-6">
-          {/* <img className="w-full h-full object-cover rounded-lg hover:scale-95 transition duration-1000 cursor-pointer" src={assets.Mecanica2} alt="" />
-          <img className="w-full h-full object-cover rounded-lg hover:scale-95 transition duration-1000 cursor-pointer" src={assets.Mecanica3} alt="" /> */}
-          <img className="w-full h-full object-cover rounded-lg hover:scale-95 transition duration-1000 cursor-pointer" src={assets.Mecanica4} alt="" />
-          <img className="w-full h-full object-cover rounded-lg hover:scale-95 transition duration-1000 cursor-pointer" src={assets.Mecanica5} alt="" />
+          <img className="w-full h-full object-cover rounded-lg hover:scale-95 transition duration-1000 cursor-pointer" src={assets.Mecanica2} alt="" />
+          <img className="w-full h-full object-cover rounded-lg hover:scale-95 transition duration-1000 cursor-pointer" src={assets.Mecanica3} alt="" />
         </div>
       </div>
     </div>
   );
-
-
-  /*
-  h-[85vh] flex items-center justify-center bg-gray-100 mt-3 text-center
-
-  <h2 className="w-full text-center text-3xl font-bold text-gray-800 p-2 md:p-6">Sobre Nosotros</h2>
-  
-  */
 }
 
 export default Nosotros;

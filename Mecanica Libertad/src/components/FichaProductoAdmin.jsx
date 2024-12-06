@@ -218,7 +218,7 @@ const FichaProductoAdmin = ({ admin }) => {
     setError((e) => ({
       ...e,
       nombre: error ? [error] : ["El nombre tiene el formato correcto"]
-      
+
     }))
   }
 
@@ -271,7 +271,7 @@ const FichaProductoAdmin = ({ admin }) => {
   }
   return product ? (
     <>
-      <Header user={admin}/>
+      <Header user={admin} />
       <div className='mt-24 px-10 md:px-6 transition-opacity ease-in duration-500 opacity-100'>
         <div className='flex gap-10 flex-col md:flex-row lg:mx-20 mb-5'>
           <h1 className='md:hidden font-medium text-center text-3xl'>{product.nombre}</h1>
@@ -285,8 +285,8 @@ const FichaProductoAdmin = ({ admin }) => {
                     <img key={key} src={item} className='w-[14%] md:w-full h-[20vh] md:mb-3 flex-shrink-0 cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-110 border-solid' onClick={() => setImageFile(item)} alt="" />
                   )))
               }
-
             </div>
+
             <div className='w-full md:w-[80%]'>
               {/* detalle*/}
               <img className='w-full h-[85vh]' src={product.imagen} alt="" />
@@ -297,22 +297,24 @@ const FichaProductoAdmin = ({ admin }) => {
           {/*info producto*/}
           <div className='flex-1 p-1 md:p-0'>
             {/* Vista Modificar Producto */}
-            {
-              admin ? (
+            {admin ? (
                 <>
+                  
                   <div className='flex flex-col mb-4'>
+                    {/* Campo Nombre del Producto */}
                     <label htmlFor="" className='mb-1 font-medium text-lg'>Nombre</label>
                     <input type="text" className='bg-gray-700 text-white rounded-xl text-md w-full lg:w-11/12 p-3'
                       value={name} onChange={handleName} />
                     {/*Manejo Errores Nombre */}
                     {error.nombre.length > 0 && (
                       <ul className={`list-disc list-inside ${error.nombre == "El nombre tiene el formato correcto" ? "text-green-500" : "text-red-500"}  text-sm mt-2`}>
-                        {error.nombre.flat().map((err,index)=>(
+                        {error.nombre.flat().map((err, index) => (
                           <li key={index}>{err}</li>
                         ))}
                       </ul>
                     )}
 
+                    {/* Campo Imagen del Producto */}
                     <label htmlFor="" className='mt-4 mb-1 font-medium text-lg'>Imagen:</label>
                     <input multiple type="file" className='bg-gray-700 text-white rounded-xl text-md w-full lg:w-11/12 p-3'
                       onChange={handleImageFile} />
@@ -325,6 +327,7 @@ const FichaProductoAdmin = ({ admin }) => {
                       </ul>
                     )}
 
+                    {/* Campo Descripción del Producto */}
                     <label htmlFor="" className='mt-4 mb-1 font-medium text-lg'>Descripción:</label>
                     <textarea className='h-screen text-md text-justify bg-gray-700 text-white rounded-xl w-full lg:w-11/12 lg:h-60 p-3'
                       wrap="hard" name="" value={desc} onChange={handleDesc}></textarea>
@@ -337,6 +340,7 @@ const FichaProductoAdmin = ({ admin }) => {
                       </ul>
                     )}
 
+                    {/* Campo Precio Aprox. del Producto */}
                     <label htmlFor="" className='mt-4 mb-1 font-medium text-lg'>Precio aproximado:</label>
                     <input type="text" className='bg-gray-700 text-white rounded-xl text-md w-full lg:w-11/12 p-3'
                       value={price} onChange={handlePrice} />
@@ -350,9 +354,8 @@ const FichaProductoAdmin = ({ admin }) => {
                     )}
 
                     <div>
-
+                      {/* Campo Caracteristicas del Producto */}
                       <label className='mr-3 font-semibold text-lg' htmlFor="">Características:</label>
-
                       <div className="flex w-full md:w-3/4 mt-2">
                         <textarea
                           className="text-white bg-gray-700 rounded-xl w-full p-2 mr-2"
@@ -361,11 +364,9 @@ const FichaProductoAdmin = ({ admin }) => {
                           value={caracteristica}
                           onChange={handleCaracOnChange}
                         />
-                        <button
-                          className="bg-gray-600 text-sm hover:bg-black text-white rounded-full w-28 h-10 flex-shrink-0"
-                          onClick={handleCaracteristicas}
-                        >
-                          Añadir Caracteristica
+                        {/* Boton Añadir Caracteristicas */}
+                        <button className="bg-gray-600 text-sm hover:bg-black text-white rounded-full w-28 h-10 flex-shrink-0"
+                          onClick={handleCaracteristicas}>Añadir Caracteristica
                         </button>
                       </div>
 
@@ -380,16 +381,14 @@ const FichaProductoAdmin = ({ admin }) => {
                             }
                           </ul>
                         )
-
-
                       }
+
                       <ul className='mt-2'>
                         {caracteristicas.map((carac, index) => (
                           <li key={index} className='flex items-center justify-between bg-gray-100 p-2 rounded-xl w-3/4 my-2 '>Característica {index + 1}: {carac}
 
                             <button className='ml-4 rounded px-2 bg-red-500' onClick={(e) => handleDeleteCaracteristicas(e, index)}>x</button>
                           </li>
-
                         ))}
                       </ul>
                     </div>
@@ -398,23 +397,23 @@ const FichaProductoAdmin = ({ admin }) => {
                   </div>
                 </>
               ) : (
-                //Vista Ficha Producto
+                //Vista de la Ficha de Producto.
                 <>
                   <h1 className='hidden md:flex font-medium text-3xl'>{product.nombre}</h1>
                   <p className='md:mt-5 text-black text-justify md:w-full'> {product.descripcion}</p>
                   <p className='mt-4 text-lg font-medium'>Precio Aproximado: ${product.precio}</p>
                   {
-                    caracteristicas.length > 0 && (<>
-                      <p className='mt-4 text-lg font-medium'>Caracteristicas del producto:</p>
-                      <ul className='list-disc list-inside text-md mt-2'>
-                        {
-                          product.caracteristicas.map((car, index) => (
-                            <li key={index}>{car}</li>
-                          ))
-                        }
-                      </ul>
-                    </>
-
+                    caracteristicas.length > 0 && (
+                      <>
+                        <p className='mt-4 text-lg font-medium'>Caracteristicas del producto:</p>
+                        <ul className='list-disc list-inside text-md mt-2'>
+                          {
+                            product.caracteristicas.map((car, index) => (
+                              <li key={index}>{car}</li>
+                            ))
+                          }
+                        </ul>
+                      </>
                     )
                   }
                 </>

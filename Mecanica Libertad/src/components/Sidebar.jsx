@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 function Sidebar() {
   const [activeSection, setActiveSection] = useState('');
 
-  const sections = ['inicio', 'nosotros', 'servicios', 'contacto', ];
+  const sections = ['inicio', 'nosotros', 'servicios', 'contacto',];
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY + window.innerHeight / 2;
@@ -20,8 +20,6 @@ function Sidebar() {
       }
     });
   };
-
-  
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -47,9 +45,8 @@ function Sidebar() {
         <a
           key={section}
           onClick={() => handleClick(section)}
-          className={`w-4 h-4 rounded-full transition-colors duration-800 cursor-pointer ${
-            activeSection === section ? 'bg-red-600' : 'bg-gray-400'
-          }`}
+          className={`w-4 h-4 rounded-full transition-colors duration-800 cursor-pointer ${activeSection === section ? 'bg-red-600' : 'bg-gray-400'
+            }`}
         ></a>
       ))}
     </div>

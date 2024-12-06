@@ -3,7 +3,6 @@ import Header from './Header';
 import { db } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
 import ChatBotDialogFlow from './ChatBotDialogFlow';
 import Whatsapp from './Whatsapp';
 
@@ -15,11 +14,11 @@ function TablaAdmin({ admin }) {
 
     useEffect(() => {
         const fetchData = async () => {
-
+            //Ingresa a la base de datos y consulta por los datos de productos.
             try {
                 const dbRef = collection(db, "productos")
                 const snapShot = await getDocs(dbRef)
-
+                //Si hay datos, los guarda en un Array.
                 if (!snapShot.empty) {
 
                     const temporaryArray = snapShot.docs.map((doc) => ({
@@ -55,8 +54,10 @@ function TablaAdmin({ admin }) {
             </div>
 
             <div className='flex flex-col items-end px-5 md:px-20'>
+                {/* Ingreso a Nuevo Producto*/}
                 <button onClick={() => navigate(`/Agregarprod`)} className='w-44 px-4 py-3 mb-5 text-base rounded-lg bg-red-600 text-white hover:bg-red-700'> Nuevo Producto</button>
-
+                
+                {/* Tabla de gestión de productos*/}
                 <table className=' w-full' id="">
                     <thead>
                         <tr className='bg-red-700 text-white text-lg h-12'>
@@ -91,5 +92,3 @@ function TablaAdmin({ admin }) {
 }
 
 export default TablaAdmin;
-//<ProductItem key={index} image={key.imagen} name={key.nombre} price={key.precio} desc={key.desc} admin={admin}  />
-//onClick={()=> navigate(`/producto`)}

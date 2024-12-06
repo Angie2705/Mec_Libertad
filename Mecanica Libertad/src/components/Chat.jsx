@@ -12,8 +12,8 @@ function ChatWidget() {
       kommunicateSettings.onInit = function() {
         var css = `
             
-          `; // Replace <YOUR_CSS_CODE_HERE> with the CSS you want to override.
-        window.Kommunicate.customizeWidgetCss(css); // use window.Kommunicate for ReactJs
+          `; 
+        window.Kommunicate.customizeWidgetCss(css); 
         };
       var s = document.createElement("script");
       s.type = "text/javascript";
@@ -25,18 +25,12 @@ function ChatWidget() {
       m._globals = kommunicateSettings;
     })(document, window.kommunicate || {});
 
-    
-    
-
     const applyCustomStyles = () => {
         const iframe = document.getElementById("kommunicate-widget-iframe");
         if (iframe) {
           iframe.style.height = "60%";
-
         }
-
       };
-      
       
       const interval = setInterval(() => {
         const iframe = document.getElementById("kommunicate-widget-iframe");
@@ -49,7 +43,7 @@ function ChatWidget() {
       return () => clearInterval(interval);
   }, []);
 
-  return null; // No se necesita renderizar nada visual para el widget
+  return null;
 }
 
 export default ChatWidget;

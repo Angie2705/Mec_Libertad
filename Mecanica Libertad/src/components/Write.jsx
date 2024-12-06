@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { db, storage } from '../firebase';
 import { getDownloadURL, ref as storageRef, uploadBytes } from 'firebase/storage';
-import { getDatabase, ref, set, push } from 'firebase/database';
 import { collection, addDoc, getDocs, where, query } from 'firebase/firestore';
 
 
@@ -36,15 +35,6 @@ const Write = () => {
 
   const handleCaracteristicas = (e) => {
     e.preventDefault()
-    // const value = caracteristica
-    // console.log(value)
-    // const errorCaract = validateCaract(value)
-
-    // setError((e)=>({
-    //   ...e,
-    //   caract: errorCaract ? [errorCaract] : []
-    // }))
-
     if (error.caract.length == 0) {
       setCaracteristicas([...caracteristicas, caracteristica]);
       setCaracteristica('');
@@ -53,8 +43,6 @@ const Write = () => {
     }
     console.log(error.caract)
   }
-
-
 
   useEffect(() => {
 
@@ -66,32 +54,25 @@ const Write = () => {
     if (caracteristica.length >= 25) {
       errores.push("La característica no puede superar los 25 caracteres")
     }
-    // if (!regex.test(caracteristica)) {
-    //   errores.push("La caracteristica no puede tener caracteres especiales o números");
-    // }
 
     return errores.length > 0 ? errores : null;
   }
 
-
-
   const handleDeleteCaracteristicas = (e, index) => {
-    e.preventDefault(); // Previene el reinicio de la página
+    e.preventDefault();
     setCaracteristicas((prevCaracteristicas) =>
       prevCaracteristicas.filter((_, i) => i !== index)
     );
 
   };
 
-
-
   const handleImageChange = (e) => {
-
-    const file = Array.from(e.target.files); // Convierte FileList en un array
+    // Convierte FileList en un array
+    const file = Array.from(e.target.files); 
     setImageFile(file);
-
+    // Guardamos el archivo de imagen
     if (file) {
-      setImageFile(file); // Guardamos el archivo de imagen
+      setImageFile(file); 
       setError((e) => ({
         ...e,
         imagen: ["Imagen agregada correctamente"]
@@ -103,7 +84,6 @@ const Write = () => {
         imagen: errores
       }))
 
-
     }
 
   }
@@ -114,8 +94,6 @@ const Write = () => {
     const response = await getDocs(question)
     return !response.empty;
   }
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -142,8 +120,6 @@ const Write = () => {
       console.log("error nombre")
     }
 
-
-
     if (errorNombre || errorPrecio || errorDesc || errorImg || errorCaract) {
       setError({
         nombre: errorNombre ? errorNombre : [],
@@ -158,7 +134,7 @@ const Write = () => {
       let descPredeterminada = "Aún no hay una descripción para este producto";
       try {
         let imageUrls = [];
-
+        //Solo guarda y cambia la imagen si la variable de envío tiene datos.
         if (imageFile.length > 0) {
 
           for (const img of imageFile) {
@@ -174,15 +150,9 @@ const Write = () => {
 
         }
 
-        if (imageUrls.length === 0) {
-          throw new Error("No se pudo obtener la URL de la imagen.");
-        }
-
-        //referencia a la ubicación de la bd donde se guardará
+        //Referencia a la ubicación de la base de datos
         const productsRef = collection(db, 'productos');
 
-
-        //Se usa await para esperar a que push finalice antes de continuar
         await addDoc(productsRef, {
           nombre: nombre,
           precio: precioParse,
@@ -215,7 +185,7 @@ const Write = () => {
   useEffect(() => {
   })
 
-  //VALIDACIÓN ERRORES
+  //Validación de Errores
 
   const validateName = (nombre) => {
     let errores = [];
@@ -259,10 +229,10 @@ const Write = () => {
       return "La imágen es obligatoria"
     }
   }
-  //FIN VALIDACIÓN ERRORES
+  //Fin de Validación de Errores
 
 
-  //MANEJO PROPIEDADES
+  //Manejo de Propiedades
   const handleName = (e) => {
     const value = e.target.value
     setNombre(value)
@@ -447,42 +417,3 @@ const Write = () => {
 }
 
 export default Write
-
-/*<form className='grid grid-rows-5 text-center p-5 mx-auto gap-3'>
-      <label htmlFor="">Nombre</label>
-      <input className='border border-gray-400' type="text" value={nombre} onChange={(e) => {
-        setNombre(e.target.value)
-      }} />
-
-      <label htmlFor="">Precio</label>
-      <input type="text" value={precio} onChange={(e) => {
-        setPrecio(e.target.value)
-      }} />
-
-      <label htmlFor="">Descripción</label>
-      <input type="text" value={desc} onChange={(e) => {
-        setDesc(e.target.value)
-      }} />
-
-      <label htmlFor="">Imagen</label>
-      <input type="file" onChange={handleImageChange} />
-
-      <label htmlFor="">Características</label>
-      <input type="text" value={caracteristica} onChange={(e) => {
-        setCaracteristica(e.target.value)
-      }} />
-
-      <button className='bg-blue-500 text-white text-base rounded-full w-48 h-10' onClick={handleCaracteristicas}>Añadir Caracteristica</button>
-
-      <ul className='mt-2'>
-        {caracteristicas.map((carac, index) => (
-          <li key={index} className='border-b'>Característica {index + 1}: {carac}
-
-            <button onClick={() => handleDeleteCaracteristicas(index)}>X</button>
-          </li>
-
-        ))}
-      </ul>
-
-      <button className='bg-red-600 text-white  hover:bg-red-700 text-base rounded-full w-32 h-10'>Save Data</button>
-    </form>*/

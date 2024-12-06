@@ -2,10 +2,11 @@ import React from "react";
 import Slider from "react-slick";
 import { assets } from "../assets/assets";
 
+//Colección de imagene del carrusel.
 const imageData = [
   { id: 1, img: assets.Mecanica1 },
-  { id: 2, img: assets.Mecanica6 },
-  { id: 3, img: assets.Mecanica7 },
+  { id: 2, img: assets.Mecanica4 },
+  { id: 3, img: assets.Mecanica5 },
 ];
 
 function Inicio() {

@@ -1,8 +1,6 @@
 import React from 'react'
 import Header from '../components/Header'
-import ProductItem from '../components/ProductItem'
 import Productos from '../components/Productos'
-import Sidebar from '../components/Sidebar'
 import Whatsapp from '../components/Whatsapp'
 import ChatBotDialogFlow from '../components/ChatBotDialogFlow'
 
