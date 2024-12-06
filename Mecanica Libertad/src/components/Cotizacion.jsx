@@ -93,7 +93,7 @@ const Cotizacion = ({admin}) => {
                     </div>
 
                     <div className='flex items-center text-2xl sm:text-3xl'>
-                        <h5 className='flex-grow'>Precio total:</h5>
+                        <h5 className='flex-grow'>Precio Aproximado:</h5>
                         <label htmlFor="">${precioTotal.toLocaleString('es-ES')}</label>
                         
                         
