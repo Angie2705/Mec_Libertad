@@ -11,6 +11,8 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { app, auth } from '../firebase'
 import Footer from '../components/Footer'
 import Title from '../components/Title'
+import ChatWidget from '../components/Chat'
+import ChatBotDialogFlow from '../components/ChatBotDialogFlow'
 
 const Home = () => {
   const [user, setUser] = useState(null)
@@ -52,6 +54,7 @@ const Home = () => {
         </main>
       </div>
       <Whatsapp />
+      <ChatBotDialogFlow/>
       
 
     </>

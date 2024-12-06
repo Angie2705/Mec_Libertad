@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import Header from './Header'
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import Whatsapp from './Whatsapp';
+import ChatBotDialogFlow from './ChatBotDialogFlow';
 
 const Cotizacion = ({admin}) => {
 
@@ -177,6 +179,8 @@ const Cotizacion = ({admin}) => {
                 </div>
                 </div>
               )}
+                    <Whatsapp/>
+                    <ChatBotDialogFlow/>
     </>
   )
 }

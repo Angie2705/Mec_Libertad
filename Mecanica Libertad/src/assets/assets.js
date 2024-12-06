@@ -25,6 +25,7 @@ import ProductoMecanica4 from './ProductoMecanica4.jpg'
 import ProductoMecanica4_1 from './ProductoMecanica4.1.jpg'
 import ProductoMecanica4_2 from './ProductoMecanica4.2.jpg'
 
+import botImage from './bot.png'
 export const assets = {
     logo,
     Mecanica1,
@@ -48,5 +49,6 @@ export const assets = {
     ProductoMecanica3,
     ProductoMecanica4,
     ProductoMecanica4_1,
-    ProductoMecanica4_2
+    ProductoMecanica4_2,
+    botImage
 }

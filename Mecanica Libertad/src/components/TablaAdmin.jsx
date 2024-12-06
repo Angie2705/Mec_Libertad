@@ -4,6 +4,8 @@ import { db } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import ChatBotDialogFlow from './ChatBotDialogFlow';
+import Whatsapp from './Whatsapp';
 
 function TablaAdmin({ admin }) {
 
@@ -82,7 +84,8 @@ function TablaAdmin({ admin }) {
                     </tbody>
                 </table>
             </div>
-
+            <Whatsapp />
+            <ChatBotDialogFlow/>
         </>
     );
 }
